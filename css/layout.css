@@ -1,0 +1,21 @@
+/* Full viewport layout */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  height: calc(100vh - 80px);
+  padding: 0 1rem 1rem;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}

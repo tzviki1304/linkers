@@ -1,0 +1,73 @@
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background-image: linear-gradient(to right bottom, rgba(241, 245, 249, 0.8), rgba(219, 234, 254, 0.8));
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: hidden; /* Prevent main page scroll */
+  margin: 0;
+  padding: 0;
+}
+
+.dark body {
+  background-image: linear-gradient(to right bottom, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-bar {
+  @apply backdrop-blur-md border border-gray-100 dark:border-gray-600;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.dark .header-bar {
+  background: linear-gradient(to right, rgba(55, 65, 81, 0.9), rgba(55, 65, 81, 0.8));
+}
+
+.header-bar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.draggable {
+  @apply cursor-grab;
+}
+
+.dragging {
+  @apply opacity-50;
+  transform: scale(0.98) rotate(1deg);
+}
+
+.drop-target {
+  @apply border-2 border-dashed border-blue-500;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Empty state styling */
+.empty-message {
+  @apply text-center p-4 text-gray-400 dark:text-gray-500;
+}
+
+.empty-message .material-icons {
+  @apply text-4xl mb-2 opacity-50;
+}
