@@ -77,17 +77,18 @@ body {
 }
 
 .link-preview {
-  @apply flex items-center;
+  @apply flex items-center flex-1 min-w-0;
 }
 
 .link-preview img {
-  @apply w-6 h-6 mr-2 object-cover rounded;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  @apply w-5 h-5 mr-2 rounded;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .link-title {
-  @apply text-sm text-gray-800 dark:text-gray-200 truncate max-w-[180px];
-  font-weight: 400;
+  @apply text-sm text-gray-800 dark:text-gray-200 truncate pr-2;
+  font-weight: 500;
 }
 
 .panel {
@@ -118,15 +119,12 @@ body {
 }
 
 .header-bar {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  @apply backdrop-blur-md border border-gray-100 dark:border-gray-600;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
 }
 
 .dark .header-bar {
-  border: 1px solid rgba(30, 41, 59, 0.2);
+  background: linear-gradient(to right, rgba(55, 65, 81, 0.9), rgba(55, 65, 81, 0.8));
 }
 
 .header-bar:hover {
@@ -178,8 +176,15 @@ body {
 }
 
 .form-input {
-  @apply w-full px-3 py-2 border rounded dark:bg-gray-800 dark:border-gray-600 dark:text-white;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  @apply w-full px-3 py-2 rounded-lg bg-white dark:bg-gray-700 
+         border border-gray-200 dark:border-gray-600
+         text-gray-800 dark:text-gray-200
+         focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+         focus:border-transparent outline-none transition-all duration-200;
+}
+
+.form-input::placeholder {
+  @apply text-gray-400 dark:text-gray-500;
 }
 
 .form-input:focus {
@@ -221,16 +226,11 @@ body {
 
 /* Empty state styling */
 .empty-message {
-  padding: 2rem;
-  text-align: center;
-  color: #9ca3af; /* gray-400 */
-  font-weight: 500;
+  @apply text-center p-4 text-gray-400 dark:text-gray-500;
 }
 
 .empty-message .material-icons {
-  font-size: 48px;
-  margin-bottom: 1rem;
-  opacity: 0.5;
+  @apply text-4xl mb-2 opacity-50;
 }
 
 /* Tab actions */
@@ -244,4 +244,63 @@ body {
 .category-item:hover .category-actions,
 .link-item:hover .link-actions {
   opacity: 1;
+}
+
+/* Modern Buttons */
+.btn-modern {
+  @apply p-1.5 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-600 dark:to-gray-700 
+         text-gray-700 dark:text-gray-200 hover:shadow-md transition-all duration-200 
+         flex items-center justify-center;
+  min-width: 32px;
+  min-height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-modern:hover {
+  transform: translateY(-1px);
+}
+
+.btn-modern.accent-blue {
+  @apply from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700;
+}
+
+.btn-modern.accent-green {
+  @apply from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700;
+}
+
+/* Tab Items */
+.tab-item {
+  @apply flex justify-between items-center p-2 bg-white dark:bg-gray-700 rounded-lg mb-2 
+         hover:bg-gray-50 dark:hover:bg-gray-600 transition-all duration-200;
+  border-left: 3px solid transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-item:hover {
+  border-left-color: #3b82f6;
+  transform: translateX(2px);
+}
+
+/* Tab Actions */
+.tab-actions {
+  @apply flex items-center space-x-1;
+}
+
+.tab-actions button {
+  @apply btn-modern;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 0.9em;
+}
+
+/* Panel Headers */
+.panel > div:first-child {
+  @apply border-b border-gray-200 dark:border-gray-600 pb-2 mb-3;
+}
+
+/* Save Button */
+.save-tab-btn {
+  @apply btn-modern accent-blue;
+  min-width: 28px;
+  min-height: 28px;
 }
