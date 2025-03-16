@@ -40,11 +40,18 @@ A Chrome extension that replaces the new tab page for saving and organizing link
 ```
 linkers/
   ├── manifest.json
+  ├── newtab.html
   ├── popup.html
   ├── css/
   │   ├── tailwind.min.css
   │   ├── material-icons.css
-  │   └── styles.css
+  │   ├── animations.css
+  │   ├── base.css
+  │   ├── buttons.css
+  │   ├── items.css
+  │   ├── layout.css
+  │   ├── modal.css
+  │   └── panels.css
   ├── js/
   │   ├── app.js
   │   ├── background.js
