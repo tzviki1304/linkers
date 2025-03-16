@@ -678,3 +678,31 @@
   color: #fb7185;
   background: rgba(251, 113, 133, 0.2);
 }
+
+/* Category container styling - new */
+.category-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Make sure the drop-target styling applies to the entire category */
+.category-item.drop-target {
+  @apply border-2 border-dashed border-blue-500;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Links container placeholder */
+.links-container-placeholder {
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* Add visual hint when dragging over the links area */
+.links-container-placeholder.drag-over {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.dark .links-container-placeholder.drag-over {
+  background-color: rgba(96, 165, 250, 0.1);
+}

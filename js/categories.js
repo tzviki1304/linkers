@@ -52,6 +52,15 @@ class CategoriesManager {
       
       this.categoriesList.appendChild(categoryElement);
       
+      // Create a category container to hold both the category item and its links
+      const categoryContainer = document.createElement('div');
+      categoryContainer.className = 'category-container';
+      categoryContainer.dataset.index = index;
+      
+      // Move the category element into the container
+      categoryElement.parentNode.replaceChild(categoryContainer, categoryElement);
+      categoryContainer.appendChild(categoryElement);
+      
       // Add click listener to select category
       categoryElement.addEventListener('click', (event) => {
         if (!event.target.closest('button')) {
@@ -69,37 +78,69 @@ class CategoriesManager {
         this.showDeleteCategoryConfirmation(index);
       });
       
-      // Add drag and drop functionality
-      categoryElement.addEventListener('dragover', (event) => {
-        event.preventDefault();
-        categoryElement.classList.add('drop-target');
-      });
+      // Add drag and drop functionality to the category element
+      this.setupDragAndDrop(categoryElement, index);
       
-      categoryElement.addEventListener('dragleave', () => {
-        categoryElement.classList.remove('drop-target');
-      });
+      // Now create a placeholder for the links container that will be populated
+      // by the LinksManager, and make it a drop target as well
+      const linksContainer = document.createElement('div');
+      linksContainer.className = 'links-container-placeholder pl-4 mb-4';
+      linksContainer.dataset.categoryIndex = index;
+      categoryContainer.appendChild(linksContainer);
       
-      categoryElement.addEventListener('drop', (event) => {
-        event.preventDefault();
-        categoryElement.classList.remove('drop-target');
-        
-        try {
-          const data = JSON.parse(event.dataTransfer.getData('text/plain'));
-          this.store.dispatch({
-            type: 'SET_ACTIVE_CATEGORY',
-            payload: { index }
-          });
-          
-          this.store.dispatch({
-            type: 'ADD_LINK',
-            payload: data
-          });
-          
-          this.ui.showToast('Link added to category');
-        } catch (error) {
-          console.error('Error parsing drag data:', error);
+      // Add drag and drop functionality to the links container as well
+      this.setupDragAndDrop(linksContainer, index);
+    });
+  }
+
+  // New method to setup drag and drop functionality for any element
+  setupDragAndDrop(element, categoryIndex) {
+    element.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      // Find the category container and highlight it
+      const container = element.closest('.category-container');
+      if (container) {
+        const categoryItem = container.querySelector('.category-item');
+        categoryItem.classList.add('drop-target');
+      }
+    });
+    
+    element.addEventListener('dragleave', (event) => {
+      // Only remove the highlight if we're leaving the container completely
+      // This prevents flicker when moving between the category and its links container
+      if (!event.relatedTarget || !element.contains(event.relatedTarget)) {
+        const container = element.closest('.category-container');
+        if (container) {
+          const categoryItem = container.querySelector('.category-item');
+          categoryItem.classList.remove('drop-target');
         }
-      });
+      }
+    });
+    
+    element.addEventListener('drop', (event) => {
+      event.preventDefault();
+      const container = element.closest('.category-container');
+      if (container) {
+        const categoryItem = container.querySelector('.category-item');
+        categoryItem.classList.remove('drop-target');
+      }
+      
+      try {
+        const data = JSON.parse(event.dataTransfer.getData('text/plain'));
+        this.store.dispatch({
+          type: 'SET_ACTIVE_CATEGORY',
+          payload: { index: categoryIndex }
+        });
+        
+        this.store.dispatch({
+          type: 'ADD_LINK',
+          payload: data
+        });
+        
+        this.ui.showToast('Link added to category');
+      } catch (error) {
+        console.error('Error parsing drag data:', error);
+      }
     });
   }
 

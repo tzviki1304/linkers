@@ -19,19 +19,12 @@ class LinksManager {
     const workspace = state.workspaces[state.activeWorkspace];
     const category = workspace.categories[state.activeCategory];
     
-    // Find the active category element
-    const categoryElement = document.querySelector(`.category-item[data-index="${state.activeCategory}"]`);
-    if (!categoryElement) return;
+    // Find the placeholder for this category's links
+    const linksPlaceholder = document.querySelector(`.links-container-placeholder[data-category-index="${state.activeCategory}"]`);
+    if (!linksPlaceholder) return;
     
-    // Remove any existing links container
-    let linksContainer = categoryElement.nextElementSibling;
-    if (linksContainer && linksContainer.classList.contains('links-container')) {
-      linksContainer.remove();
-    }
-    
-    // Create new links container
-    linksContainer = document.createElement('div');
-    linksContainer.className = 'links-container pl-4 mb-4';
+    // Clear the placeholder
+    linksPlaceholder.innerHTML = '';
     
     // Add a header with add link button
     const linksHeader = document.createElement('div');
@@ -42,19 +35,19 @@ class LinksManager {
         <span class="material-icons" style="font-size: 14px">add</span>
       </button>
     `;
-    linksContainer.appendChild(linksHeader);
+    linksPlaceholder.appendChild(linksHeader);
     
     // Add each link
     if (category.links.length === 0) {
       const emptyMessage = document.createElement('div');
       emptyMessage.className = 'text-gray-500 dark:text-gray-400 text-center text-xs py-2';
       emptyMessage.textContent = 'No links in this category';
-      linksContainer.appendChild(emptyMessage);
+      linksPlaceholder.appendChild(emptyMessage);
     } else {
       // Create a grid container for card-style links
       const linksGrid = document.createElement('div');
       linksGrid.className = 'links-grid';
-      linksContainer.appendChild(linksGrid);
+      linksPlaceholder.appendChild(linksGrid);
       
       category.links.forEach((link, index) => {
         const linkElement = document.createElement('div');
@@ -109,11 +102,8 @@ class LinksManager {
       });
     }
     
-    // Insert links container after the category element
-    categoryElement.parentNode.insertBefore(linksContainer, categoryElement.nextSibling);
-    
     // Add event listener for add link button
-    linksContainer.querySelector('.add-link-btn').addEventListener('click', () => {
+    linksPlaceholder.querySelector('.add-link-btn').addEventListener('click', () => {
       this.showAddLinkModal();
     });
   }
