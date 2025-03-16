@@ -22,7 +22,19 @@ class WorkspacesManager {
     this.workspacesList.innerHTML = '';
     
     if (state.workspaces.length === 0) {
-      this.workspacesList.innerHTML = '<div class="text-gray-500 dark:text-gray-400 text-center py-4">No workspaces</div>';
+      this.workspacesList.innerHTML = `
+        <div class="empty-message">
+          <span class="material-icons">dashboard</span>
+          <p>No workspaces</p>
+          <button class="btn mt-2 flex items-center mx-auto">
+            <span class="material-icons mr-1" style="font-size: 18px;">add</span>
+            Add Workspace
+          </button>
+        </div>`;
+      
+      this.workspacesList.querySelector('button').addEventListener('click', () => {
+        this.showAddWorkspaceModal();
+      });
       return;
     }
     
@@ -35,10 +47,10 @@ class WorkspacesManager {
         <span class="workspace-name">${workspace.name}</span>
         <div class="workspace-actions">
           <button class="btn-icon btn-sm edit-workspace-btn" title="Edit">
-            <span class="material-icons">edit</span>
+            <span class="material-icons" style="font-size: 16px;">edit</span>
           </button>
           <button class="btn-icon btn-sm delete-workspace-btn" title="Delete">
-            <span class="material-icons">delete</span>
+            <span class="material-icons" style="font-size: 16px;">delete</span>
           </button>
         </div>
       `;
