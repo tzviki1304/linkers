@@ -1,6 +1,5 @@
 body {
-  width: 800px;
-  height: 600px;
+  min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
@@ -38,7 +37,7 @@ body {
 }
 
 .panel {
-  @apply h-[500px] overflow-y-auto;
+  @apply h-[calc(100vh-140px)] overflow-y-auto;
 }
 
 .draggable {

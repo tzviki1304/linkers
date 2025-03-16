@@ -1,9 +1,10 @@
 # Link Saver Chrome Extension
 
-A Chrome extension for saving and organizing links in workspaces and categories.
+A Chrome extension that replaces the new tab page for saving and organizing links in workspaces and categories.
 
 ## Features
 
+- Opens automatically on new tab
 - Organize links in workspaces and categories
 - Drag and drop from open tabs
 - Light and dark theme
@@ -16,7 +17,7 @@ A Chrome extension for saving and organizing links in workspaces and categories.
 2. Open Chrome and navigate to `chrome://extensions/`
 3. Enable "Developer mode" using the toggle in the upper right corner
 4. Click "Load unpacked" button and select the extension directory
-5. The extension is now installed and ready to use
+5. The extension is now installed and will open whenever you open a new tab
 
 ## Dependencies
 
@@ -25,7 +26,7 @@ A Chrome extension for saving and organizing links in workspaces and categories.
 
 ## Usage
 
-- Click on the extension icon to open the popup
+- Open a new tab to access the Link Saver
 - Create workspaces to organize your links
 - Create categories within each workspace
 - Drag and drop open tabs to categories to save them

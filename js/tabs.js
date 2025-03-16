@@ -27,7 +27,13 @@ class TabsManager {
   async getOpenTabs() {
     return new Promise((resolve) => {
       chrome.tabs.query({}, (tabs) => {
-        resolve(tabs);
+        // Filter out the current newtab page
+        const filteredTabs = tabs.filter(tab => {
+          return !tab.url.includes('chrome://newtab') && 
+                 !tab.url.startsWith('chrome-extension://') ||
+                 !tab.active; // Include non-active extension pages
+        });
+        resolve(filteredTabs);
       });
     });
   }

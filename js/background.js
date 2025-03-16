@@ -4,24 +4,24 @@
 // Listen for tab updates to keep the open tabs list current
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete') {
-    // Send a message to the popup if it's open
+    // Send a message to the newtab page if it's open
     chrome.runtime.sendMessage({
       type: 'TAB_UPDATED',
       payload: tab
     }).catch(() => {
-      // Popup is not open, ignore the error
+      // Newtab page is not open, ignore the error
     });
   }
 });
 
 // Listen for tab removals
 chrome.tabs.onRemoved.addListener((tabId) => {
-  // Send a message to the popup if it's open
+  // Send a message to the newtab page if it's open
   chrome.runtime.sendMessage({
     type: 'TAB_REMOVED',
     payload: { tabId }
   }).catch(() => {
-    // Popup is not open, ignore the error
+    // Newtab page is not open, ignore the error
   });
 });
 

@@ -4,13 +4,8 @@
   "description": "Save and organize links in workspaces and categories",
   "manifest_version": 3,
   "permissions": ["tabs", "storage", "activeTab"],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
   },
   "icons": {
     "16": "icons/icon16.png",
