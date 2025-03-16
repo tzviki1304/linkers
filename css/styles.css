@@ -1,0 +1,87 @@
+body {
+  width: 800px;
+  height: 600px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.btn {
+  @apply px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors;
+}
+
+.btn-icon {
+  @apply p-1 rounded-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors;
+}
+
+.btn-sm {
+  @apply text-sm;
+}
+
+.workspace-item, .category-item, .link-item, .tab-item {
+  @apply flex justify-between items-center p-2 bg-gray-100 dark:bg-gray-600 rounded mb-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors;
+}
+
+.workspace-item.active, .category-item.active {
+  @apply bg-blue-100 dark:bg-blue-700;
+}
+
+.link-preview {
+  @apply flex items-center;
+}
+
+.link-preview img {
+  @apply w-6 h-6 mr-2 object-cover rounded;
+}
+
+.link-title {
+  @apply text-sm text-gray-800 dark:text-gray-200 truncate max-w-[180px];
+}
+
+.panel {
+  @apply h-[500px] overflow-y-auto;
+}
+
+.draggable {
+  @apply cursor-grab;
+}
+
+.dragging {
+  @apply opacity-50;
+}
+
+.drop-target {
+  @apply border-2 border-dashed border-blue-500;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Modal styles */
+.modal-header {
+  @apply flex justify-between items-center border-b pb-2 mb-3 dark:border-gray-600;
+}
+
+.modal-title {
+  @apply text-lg font-semibold;
+}
+
+.modal-close {
+  @apply text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100;
+}
+
+.form-group {
+  @apply mb-3;
+}
+
+.form-label {
+  @apply block text-gray-700 dark:text-gray-300 mb-1 text-sm;
+}
+
+.form-input {
+  @apply w-full px-3 py-2 border rounded dark:bg-gray-800 dark:border-gray-600 dark:text-white;
+}
+
+.modal-footer {
+  @apply flex justify-end space-x-2 pt-2 border-t dark:border-gray-600;
+}
