@@ -37,6 +37,11 @@
   color: #60a5fa;
 }
 
+.dark .workspace-name{
+  color: #d1d5db;
+}
+
+
 .category-name::before {
   content: '';
   font-family: 'Material Icons';
@@ -86,11 +91,13 @@
 
 /* Special styling for workspace actions */
 .workspace-actions {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(4px);
-  transform: translateX(5px);
+  transform: translateX(0);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .dark .workspace-actions {
@@ -103,30 +110,31 @@
 }
 
 .workspace-actions .btn-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   margin: 0;
   transition: all 0.2s ease;
+  border-radius: 6px;
 }
 
 .workspace-actions .edit-workspace-btn:hover {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.2);
 }
 
 .dark .workspace-actions .edit-workspace-btn:hover {
-  color: #60a5fa;
-  background: rgba(96, 165, 250, 0.2);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.2);
 }
 
 .workspace-actions .delete-workspace-btn:hover {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.2);
 }
 
 .dark .workspace-actions .delete-workspace-btn:hover {
-  color: #f87171;
-  background: rgba(248, 113, 113, 0.2);
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.2);
 }
 
 /* Enhanced Tab Items */
@@ -401,11 +409,13 @@
 
 /* Button styles modernization */
 .btn-icon {
-  @apply flex items-center justify-center rounded-full transition-all;
+  @apply flex items-center justify-center transition-all;
   width: 32px;
   height: 32px;
   background-color: rgba(0, 0, 0, 0.05);
   color: #4b5563;
+  border-radius: 6px;
+  border: 1px solid transparent;
 }
 
 .dark .btn-icon {
@@ -419,12 +429,21 @@
 }
 
 .dark .btn-icon:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-icon .material-icons {
+  font-size: 18px;
 }
 
 .btn-sm {
   width: 28px;
   height: 28px;
+  border-radius: 6px;
+}
+
+.btn-sm .material-icons {
+  font-size: 16px;
 }
 
 .btn {
@@ -498,4 +517,59 @@
   font-size: 1.1rem;
   margin-bottom: 16px;
   font-weight: 500;
+}
+
+/* Edit and Delete button styles - global */
+.edit-btn, .edit-workspace-btn, .edit-category-btn, .edit-link-btn {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+}
+
+.dark .edit-btn, .dark .edit-workspace-btn, .dark .edit-category-btn, .dark .edit-link-btn {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.edit-btn:hover, .edit-workspace-btn:hover, .edit-category-btn:hover, .edit-link-btn:hover {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.2);
+  transform: scale(1.05);
+}
+
+.dark .edit-btn:hover, .dark .edit-workspace-btn:hover, .dark .edit-category-btn:hover, .dark .edit-link-btn:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.delete-btn, .delete-workspace-btn, .delete-category-btn, .delete-link-btn {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.1);
+}
+
+.dark .delete-btn, .dark .delete-workspace-btn, .dark .delete-category-btn, .dark .delete-link-btn {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.1);
+}
+
+.delete-btn:hover, .delete-workspace-btn:hover, .delete-category-btn:hover, .delete-link-btn:hover {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.2);
+  transform: scale(1.05);
+}
+
+.dark .delete-btn:hover, .dark .delete-workspace-btn:hover, .dark .delete-category-btn:hover, .dark .delete-link-btn:hover {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.2);
+}
+
+/* Improve tab and link action buttons */
+.tab-actions, .link-card-actions {
+  gap: 8px;
+  padding: 6px 8px;
+}
+
+.link-card-actions .btn-icon,
+.tab-actions .btn-icon {
+  width: 30px;
+  height: 30px;
 }
