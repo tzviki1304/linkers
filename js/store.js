@@ -145,6 +145,27 @@ class Store {
       case 'IMPORT_DATA':
         this.data = action.payload;
         break;
+
+      case 'REORDER_WORKSPACES': {
+        const { fromIndex, toIndex } = action.payload;
+        const newWorkspaces = [...this.data.workspaces];
+        const [movedWorkspace] = newWorkspaces.splice(fromIndex, 1);
+        newWorkspaces.splice(toIndex, 0, movedWorkspace);
+        
+        // Adjust active workspace index if necessary
+        let activeWorkspace = this.data.activeWorkspace;
+        if (this.data.activeWorkspace === fromIndex) {
+          activeWorkspace = toIndex;
+        } else if (fromIndex < this.data.activeWorkspace && toIndex >= this.data.activeWorkspace) {
+          activeWorkspace--;
+        } else if (fromIndex > this.data.activeWorkspace && toIndex <= this.data.activeWorkspace) {
+          activeWorkspace++;
+        }
+        
+        this.data.workspaces = newWorkspaces;
+        this.data.activeWorkspace = activeWorkspace;
+        break;
+      }
     }
     
     await this.saveToStorage();

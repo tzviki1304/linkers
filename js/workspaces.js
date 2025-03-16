@@ -42,16 +42,24 @@ class WorkspacesManager {
       const workspaceElement = document.createElement('div');
       workspaceElement.className = `workspace-item ${state.activeWorkspace === index ? 'active' : ''}`;
       workspaceElement.dataset.index = index;
+      workspaceElement.draggable = true;
       
       workspaceElement.innerHTML = `
-        <span class="workspace-name">${workspace.name}</span>
-        <div class="workspace-actions">
-          <button class="btn-icon edit-workspace-btn" title="Edit Workspace">
-            <span class="material-icons" style="font-size: 16px;">edit</span>
-          </button>
-          <button class="btn-icon delete-workspace-btn" title="Delete Workspace">
-            <span class="material-icons" style="font-size: 16px;">delete</span>
-          </button>
+        <div class="workspace-content">
+          <div class="workspace-header">
+            <div class="workspace-drag-handle">
+              <span class="material-icons" style="font-size: 16px;">drag_indicator</span>
+            </div>
+            <span class="workspace-name">${workspace.name}</span>
+          </div>
+          <div class="workspace-actions">
+            <button class="btn-icon edit-workspace-btn" title="Edit Workspace">
+              <span class="material-icons" style="font-size: 16px;">edit</span>
+            </button>
+            <button class="btn-icon delete-workspace-btn" title="Delete Workspace">
+              <span class="material-icons" style="font-size: 16px;">delete</span>
+            </button>
+          </div>
         </div>
       `;
       
@@ -59,7 +67,7 @@ class WorkspacesManager {
       
       // Add click listener to select workspace
       workspaceElement.addEventListener('click', (event) => {
-        if (!event.target.closest('button')) {
+        if (!event.target.closest('button') && !event.target.closest('.workspace-drag-handle')) {
           this.selectWorkspace(index);
         }
       });
@@ -73,6 +81,54 @@ class WorkspacesManager {
       workspaceElement.querySelector('.delete-workspace-btn').addEventListener('click', () => {
         this.showDeleteWorkspaceConfirmation(index);
       });
+      
+      // Add drag events
+      this.addDragEvents(workspaceElement);
+    });
+  }
+
+  addDragEvents(workspaceElement) {
+    workspaceElement.addEventListener('dragstart', (e) => {
+      // Add a class to show it's being dragged
+      workspaceElement.classList.add('dragging');
+      // Store the original index
+      e.dataTransfer.setData('text/plain', workspaceElement.dataset.index);
+    });
+
+    workspaceElement.addEventListener('dragend', () => {
+      workspaceElement.classList.remove('dragging');
+    });
+
+    workspaceElement.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    workspaceElement.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      workspaceElement.classList.add('drag-over');
+    });
+
+    workspaceElement.addEventListener('dragleave', () => {
+      workspaceElement.classList.remove('drag-over');
+    });
+
+    workspaceElement.addEventListener('drop', (e) => {
+      e.preventDefault();
+      workspaceElement.classList.remove('drag-over');
+      
+      const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+      const toIndex = parseInt(workspaceElement.dataset.index);
+      
+      if (fromIndex !== toIndex) {
+        this.reorderWorkspaces(fromIndex, toIndex);
+      }
+    });
+  }
+
+  reorderWorkspaces(fromIndex, toIndex) {
+    this.store.dispatch({
+      type: 'REORDER_WORKSPACES',
+      payload: { fromIndex, toIndex }
     });
   }
 
