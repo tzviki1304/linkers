@@ -16,27 +16,39 @@
 }
 
 .workspace-name, .category-name {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.05rem;
   display: flex;
   align-items: center;
+  letter-spacing: 0.01em;
 }
 
 .workspace-name::before {
   content: '';
   font-family: 'Material Icons';
   content: 'dashboard';
-  font-size: 18px;
-  margin-right: 8px;
-  opacity: 0.8;
+  font-size: 22px;
+  margin-right: 12px;
+  opacity: 0.9;
+  color: #3b82f6;
+}
+
+.dark .workspace-name::before {
+  color: #60a5fa;
 }
 
 .category-name::before {
   content: '';
   font-family: 'Material Icons';
   content: 'folder';
-  font-size: 18px;
-  margin-right: 8px;
-  opacity: 0.8;
+  font-size: 22px;
+  margin-right: 12px;
+  opacity: 0.9;
+  color: #3b82f6;
+}
+
+.dark .category-name::before {
+  color: #60a5fa;
 }
 
 .link-preview {
@@ -56,8 +68,12 @@
 
 /* Tab actions */
 .tab-actions, .workspace-actions, .category-actions, .link-actions {
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .tab-item:hover .tab-actions,
@@ -65,6 +81,52 @@
 .category-item:hover .category-actions,
 .link-item:hover .link-actions {
   opacity: 1;
+  transform: translateX(0);
+}
+
+/* Special styling for workspace actions */
+.workspace-actions {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  transform: translateX(5px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark .workspace-actions {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.workspace-item:hover .workspace-actions {
+  transform: translateX(0);
+}
+
+.workspace-actions .btn-icon {
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  transition: all 0.2s ease;
+}
+
+.workspace-actions .edit-workspace-btn:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.dark .workspace-actions .edit-workspace-btn:hover {
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.2);
+}
+
+.workspace-actions .delete-workspace-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.dark .workspace-actions .delete-workspace-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.2);
 }
 
 /* Enhanced Tab Items */
@@ -335,4 +397,105 @@
 
 .dark .delete-link-btn {
   color: #f87171;
+}
+
+/* Button styles modernization */
+.btn-icon {
+  @apply flex items-center justify-center rounded-full transition-all;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #4b5563;
+}
+
+.dark .btn-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #d1d5db;
+}
+
+.btn-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.dark .btn-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-sm {
+  width: 28px;
+  height: 28px;
+}
+
+.btn {
+  @apply rounded-md px-4 py-2 font-medium transition-all;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+}
+
+.dark .btn {
+  background-color: #60a5fa;
+  box-shadow: 0 2px 5px rgba(96, 165, 250, 0.3);
+}
+
+.btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+}
+
+.dark .btn:hover {
+  background-color: #3b82f6;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+}
+
+/* Improved workspace and category items */
+.workspace-item, .category-item {
+  @apply flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-all;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.workspace-item:hover, .category-item:hover {
+  border-left-color: #3b82f6;
+  transform: translateX(3px);
+}
+
+.dark .workspace-item:hover, .dark .category-item:hover {
+  border-left-color: #60a5fa;
+}
+
+.workspace-item.active, .category-item.active {
+  @apply bg-blue-50 dark:bg-blue-800;
+  border-left-color: #2563eb;
+}
+
+.dark .workspace-item.active, .dark .category-item.active {
+  border-left-color: #3b82f6;
+}
+
+/* Empty state styling */
+.empty-message {
+  @apply flex flex-col items-center justify-center p-8 text-gray-500 dark:text-gray-400;
+  text-align: center;
+}
+
+.empty-message .material-icons {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+  color: #6b7280;
+}
+
+.dark .empty-message .material-icons {
+  color: #9ca3af;
+}
+
+.empty-message p {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  font-weight: 500;
 }

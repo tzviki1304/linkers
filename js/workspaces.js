@@ -25,10 +25,10 @@ class WorkspacesManager {
       this.workspacesList.innerHTML = `
         <div class="empty-message">
           <span class="material-icons">dashboard</span>
-          <p>No workspaces</p>
-          <button class="btn mt-2 flex items-center mx-auto">
-            <span class="material-icons mr-1" style="font-size: 18px;">add</span>
-            Add Workspace
+          <p>No workspaces yet</p>
+          <button class="btn mt-3 flex items-center gap-2 mx-auto">
+            <span class="material-icons" style="font-size: 20px;">add_circle</span>
+            Create Workspace
           </button>
         </div>`;
       
@@ -46,10 +46,10 @@ class WorkspacesManager {
       workspaceElement.innerHTML = `
         <span class="workspace-name">${workspace.name}</span>
         <div class="workspace-actions">
-          <button class="btn-icon btn-sm edit-workspace-btn" title="Edit">
+          <button class="btn-icon edit-workspace-btn" title="Edit Workspace">
             <span class="material-icons" style="font-size: 16px;">edit</span>
           </button>
-          <button class="btn-icon btn-sm delete-workspace-btn" title="Delete">
+          <button class="btn-icon delete-workspace-btn" title="Delete Workspace">
             <span class="material-icons" style="font-size: 16px;">delete</span>
           </button>
         </div>
@@ -85,9 +85,9 @@ class WorkspacesManager {
 
   showAddWorkspaceModal() {
     this.ui.createFormModal(
-      'Add Workspace',
+      'Add New Workspace',
       [
-        { name: 'name', label: 'Workspace Name', type: 'text', required: true }
+        { name: 'name', label: 'Workspace Name', type: 'text', required: true, placeholder: 'Enter a name for your workspace' }
       ],
       (data) => {
         this.store.dispatch({
@@ -102,7 +102,7 @@ class WorkspacesManager {
     this.ui.createFormModal(
       'Edit Workspace',
       [
-        { name: 'name', label: 'Workspace Name', type: 'text', required: true }
+        { name: 'name', label: 'Workspace Name', type: 'text', required: true, placeholder: 'Enter a new name' }
       ],
       (data) => {
         this.store.dispatch({
