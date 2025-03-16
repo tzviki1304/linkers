@@ -51,24 +51,49 @@ class LinksManager {
       emptyMessage.textContent = 'No links in this category';
       linksContainer.appendChild(emptyMessage);
     } else {
+      // Create a grid container for card-style links
+      const linksGrid = document.createElement('div');
+      linksGrid.className = 'links-grid';
+      linksContainer.appendChild(linksGrid);
+      
       category.links.forEach((link, index) => {
         const linkElement = document.createElement('div');
-        linkElement.className = 'link-item text-sm';
+        linkElement.className = 'link-card';
+        
+        // Format URL for display
+        let displayUrl;
+        try {
+          const url = new URL(link.url);
+          displayUrl = url.hostname;
+        } catch (e) {
+          displayUrl = link.url;
+        }
+        
         linkElement.innerHTML = `
-          <a href="${link.url}" target="_blank" class="link-preview">
-            <img src="${link.image || 'icons/default-favicon.png'}" alt="favicon" onerror="this.src='icons/default-favicon.png'">
-            <span class="link-title">${link.title}</span>
-          </a>
-          <div class="link-actions">
-            <button class="btn-icon btn-sm edit-link-btn" title="Edit" data-index="${index}">
-              <span class="material-icons" style="font-size: 14px">edit</span>
+          <div class="link-card-content">
+            <div class="link-thumbnail">
+              <img src="${link.image || 'icons/default-favicon.png'}" alt="favicon" 
+                   onerror="this.src='icons/default-favicon.png'">
+            </div>
+            <div class="link-info">
+              <h3 class="link-card-title">${link.title}</h3>
+              <span class="link-card-url">${displayUrl}</span>
+            </div>
+          </div>
+          <div class="link-card-actions">
+            <a href="${link.url}" target="_blank" class="link-card-btn visit-btn" title="Visit Link">
+              <span class="material-icons">open_in_new</span>
+            </a>
+            <button class="link-card-btn edit-link-btn" title="Edit Link" data-index="${index}">
+              <span class="material-icons">edit</span>
             </button>
-            <button class="btn-icon btn-sm delete-link-btn" title="Delete" data-index="${index}">
-              <span class="material-icons" style="font-size: 14px">delete</span>
+            <button class="link-card-btn delete-link-btn" title="Delete Link" data-index="${index}">
+              <span class="material-icons">delete</span>
             </button>
           </div>
         `;
-        linksContainer.appendChild(linkElement);
+        
+        linksGrid.appendChild(linkElement);
         
         // Add edit button listener
         linkElement.querySelector('.edit-link-btn').addEventListener('click', (event) => {
