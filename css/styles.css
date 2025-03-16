@@ -100,32 +100,54 @@ body {
   font-weight: 500;
 }
 
+/* Panel and Panel Content styles - fixed for scrolling */
 .panel {
-  @apply overflow-y-auto;
-  height: calc(100vh - 80px); /* Adjusted for fixed header */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100vh - 80px);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-}
-
-.panel::-webkit-scrollbar {
-  width: 6px;
-}
-
-.panel::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.panel::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 20px;
+  overflow: hidden; /* Important: prevent panel itself from scrolling */
 }
 
 .panel:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.panel-header {
+  @apply flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 5;
+}
+
+.panel-content {
+  flex: 1 1 auto;
+  overflow-y: auto !important; /* Force scroll */
+  overflow-x: hidden;
+  height: auto;
+  max-height: calc(100% - 60px); /* Account for header height */
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
 }
 
 .header-bar {

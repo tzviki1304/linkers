@@ -42,7 +42,7 @@
     <div class="main-content">
       <!-- Workspaces Panel -->
       <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
+        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
           <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
             <span class="material-icons mr-2">dashboard</span>
             Workspaces
@@ -51,12 +51,14 @@
             <span class="material-icons">add</span>
           </button>
         </div>
-        <div id="workspacesList" class="space-y-2"></div>
+        <div class="panel-content" style="overflow-y: auto;">
+          <div id="workspacesList" class="space-y-2"></div>
+        </div>
       </div>
       
       <!-- Categories Panel -->
       <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
+        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
           <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
             <span class="material-icons mr-2">folder</span>
             Categories
@@ -65,12 +67,14 @@
             <span class="material-icons">add</span>
           </button>
         </div>
-        <div id="categoriesList" class="space-y-2"></div>
+        <div class="panel-content" style="overflow-y: auto;">
+          <div id="categoriesList" class="space-y-2"></div>
+        </div>
       </div>
       
       <!-- Open Tabs Panel -->
       <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
+        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
           <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
             <span class="material-icons mr-2">tab</span>
             Open Tabs
@@ -79,7 +83,9 @@
             <span class="material-icons">refresh</span>
           </button>
         </div>
-        <div id="openTabsList" class="space-y-2"></div>
+        <div class="panel-content" style="overflow-y: auto;">
+          <div id="openTabsList" class="space-y-2"></div>
+        </div>
       </div>
     </div>
   </div>

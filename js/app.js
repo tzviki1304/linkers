@@ -27,6 +27,9 @@ class App {
         this.tabsManager.loadOpenTabs();
       }
     });
+
+    // Initialize scrolling behavior
+    this.initializeScrolling();
   }
 
   handleStateChange(state) {
@@ -37,6 +40,27 @@ class App {
     this.workspacesManager.renderWorkspaces(state);
     this.categoriesManager.renderCategories(state);
     this.linksManager.renderLinks(state);
+
+    // Re-check scrolling after content updates
+    setTimeout(() => {
+      this.initializeScrolling();
+    }, 100);
+  }
+  
+  initializeScrolling() {
+    // Ensure all panel content areas have proper scrolling behavior
+    const panelContents = document.querySelectorAll('.panel-content');
+    panelContents.forEach(panel => {
+      // Force overflow setting in case it's being overridden
+      panel.style.overflowY = 'auto';
+      
+      // Add enough content to test scrolling in dev
+      if (panel.scrollHeight <= panel.clientHeight) {
+        console.log('Panel content fits without scrolling');
+      } else {
+        console.log('Panel content requires scrolling');
+      }
+    });
   }
 }
 
