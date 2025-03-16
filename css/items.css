@@ -89,13 +89,20 @@
 }
 
 .tab-header {
-  @apply flex items-start p-3;
+  @apply flex items-center p-3;
+  flex-direction: row !important; /* Force horizontal layout */
+  justify-content: flex-start;
+  align-items: center; /* Center items vertically */
+  flex-wrap: nowrap;
+  gap: 16px; /* Increase spacing between image and info */
+  width: 100%; /* Ensure the header takes full width */
+  display: flex; /* Explicitly set display to flex */
 }
 
 .tab-image {
-  @apply mr-3 flex-shrink-0;
-  width: 40px;
-  height: 40px;
+  @apply flex-shrink-0;
+  width: 35px;
+  height: 35px;
   border-radius: 8px;
   overflow: hidden;
   background-color: #f9fafb;
@@ -105,6 +112,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto; /* Prevent image from growing or shrinking */
+  order: 1; /* Ensure image is first */
 }
 
 .dark .tab-image {
@@ -120,20 +129,27 @@
 }
 
 .tab-info {
-  @apply flex-1 min-w-0 flex flex-col justify-center;
-  padding-top: 2px;
+  @apply min-w-0;
+  flex: 1; /* Allow info to take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0; /* Remove padding */
+  order: 2; /* Info comes after image */
 }
 
 .tab-title {
   @apply text-gray-800 dark:text-gray-200 font-medium truncate;
-  font-size: 0.95rem;
-  line-height: 1.3;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 2px;
 }
 
 .tab-url {
-  @apply text-gray-500 dark:text-gray-400 text-xs truncate mt-1;
+  @apply text-gray-500 dark:text-gray-400 text-xs truncate;
   font-size: 0.8rem;
   max-width: 100%;
+  margin-top: 0; /* Remove top margin for better spacing */
 }
 
 .tab-actions {

@@ -1,7 +1,7 @@
 /* Full viewport layout */
 .main-content {
   display: grid;
-  grid-template-columns: 1fr 65% 1fr;
+  grid-template-columns: 1fr 60% 1fr;
   gap: 1rem;
   height: calc(100vh - 80px);
   padding: 0 1rem 1rem;
