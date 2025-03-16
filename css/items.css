@@ -41,19 +41,33 @@
   color: #d1d5db;
 }
 
+.category-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.01em;
+  color: #374151; /* Dark gray for light mode */
+}
+
+.dark .category-name {
+  color: #e5e7eb; /* Light gray for dark mode */
+}
 
 .category-name::before {
-  content: '';
-  font-family: 'Material Icons';
   content: 'folder';
+  font-family: 'Material Icons';
   font-size: 22px;
   margin-right: 12px;
   opacity: 0.9;
-  color: #3b82f6;
+  color: #3b82f6; /* Blue-500 for light mode */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dark .category-name::before {
-  color: #60a5fa;
+  color: #60a5fa; /* Blue-400 for dark mode - brighter */
 }
 
 .link-preview {
@@ -206,20 +220,35 @@
   justify-content: center;
   padding: 0; /* Remove padding */
   order: 2; /* Info comes after image */
+  color: #1f2937; /* Dark gray for light mode */
+}
+
+.dark .tab-info {
+  color: #e5e7eb; /* Light gray for dark mode */
 }
 
 .tab-title {
-  @apply text-gray-800 dark:text-gray-200 font-medium truncate;
+  @apply font-medium truncate;
   font-size: 1rem;
   line-height: 1.4;
   margin-bottom: 2px;
+  color: #1f2937; /* Dark gray for light mode */
+}
+
+.dark .tab-title {
+  color: #f3f4f6; /* Very light gray for dark mode */
 }
 
 .tab-url {
-  @apply text-gray-500 dark:text-gray-400 text-xs truncate;
+  @apply text-xs truncate;
   font-size: 0.8rem;
   max-width: 100%;
   margin-top: 0; /* Remove top margin for better spacing */
+  color: #6b7280; /* Gray-500 for light mode */
+}
+
+.dark .tab-url {
+  color: #9ca3af; /* Gray-400 for dark mode - brighter */
 }
 
 .tab-actions {
@@ -572,4 +601,80 @@
 .tab-actions .btn-icon {
   width: 30px;
   height: 30px;
+}
+
+/* Category item styling */
+.category-item {
+  @apply flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-all;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover {
+  border-left-color: #3b82f6; /* Blue-500 */
+  transform: translateX(3px);
+}
+
+.dark .category-item:hover {
+  border-left-color: #60a5fa; /* Blue-400 */
+}
+
+.category-item.active {
+  @apply bg-blue-50 dark:bg-blue-800;
+  border-left-color: #2563eb; /* Blue-600 */
+}
+
+.dark .category-item.active {
+  border-left-color: #3b82f6; /* Blue-500 */
+}
+
+/* Category actions styling */
+.category-actions {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  transform: translateX(5px);
+  opacity: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.dark .category-actions {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-item:hover .category-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.category-actions .btn-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.edit-category-btn:hover {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.2);
+}
+
+.dark .edit-category-btn:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.delete-category-btn:hover {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.2);
+}
+
+.dark .delete-category-btn:hover {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.2);
 }
