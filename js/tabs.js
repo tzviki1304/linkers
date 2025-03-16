@@ -55,15 +55,28 @@ class TabsManager {
       tabElement.dataset.url = tab.url;
       tabElement.dataset.favIcon = tab.favIconUrl || '';
       
+      const domain = new URL(tab.url).hostname.replace('www.', '');
+      
       tabElement.innerHTML = `
-        <div class="link-preview">
-          <img src="${tab.favIconUrl || 'icons/default-favicon.png'}" alt="favicon" onerror="this.src='icons/default-favicon.png'">
-          <span class="link-title">${tab.title}</span>
-        </div>
-        <div class="tab-actions">
-          <button class="btn-icon btn-sm save-tab-btn" title="Save to active category">
-            <span class="material-icons">save</span>
-          </button>
+        <div class="tab-content">
+          <div class="tab-header">
+            <div class="tab-image">
+              <img src="${tab.favIconUrl || 'icons/default-favicon.png'}" alt="favicon" 
+                  onerror="this.src='icons/default-favicon.png'">
+            </div>
+            <div class="tab-info">
+              <div class="tab-title">${tab.title}</div>
+              <div class="tab-url">${domain}</div>
+            </div>
+          </div>
+          <div class="tab-actions">
+            <button class="tab-btn go-to-tab-btn" title="Go to tab">
+              <span class="material-icons">open_in_new</span>
+            </button>
+            <button class="tab-btn save-tab-btn" title="Save to active category">
+              <span class="material-icons">bookmark_add</span>
+            </button>
+          </div>
         </div>
       `;
       
@@ -86,6 +99,12 @@ class TabsManager {
       // Add save button listener
       tabElement.querySelector('.save-tab-btn').addEventListener('click', () => {
         this.saveTabToActiveCategory(tab);
+      });
+      
+      // Add go to tab button listener
+      tabElement.querySelector('.go-to-tab-btn').addEventListener('click', () => {
+        chrome.tabs.update(tab.id, { active: true });
+        chrome.windows.update(tab.windowId, { focused: true });
       });
     });
   }
