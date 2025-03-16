@@ -55,7 +55,15 @@ class TabsManager {
       tabElement.dataset.url = tab.url;
       tabElement.dataset.favIcon = tab.favIconUrl || '';
       
-      const domain = new URL(tab.url).hostname.replace('www.', '');
+      let domain = '';
+      try {
+        domain = new URL(tab.url).hostname.replace('www.', '');
+      } catch (e) {
+        domain = tab.url;
+      }
+      
+      // Create a shortened title (max 50 characters)
+      const shortTitle = tab.title.length > 50 ? tab.title.substring(0, 50) + '...' : tab.title;
       
       tabElement.innerHTML = `
         <div class="tab-content">
@@ -65,7 +73,7 @@ class TabsManager {
                   onerror="this.src='icons/default-favicon.png'">
             </div>
             <div class="tab-info">
-              <div class="tab-title">${tab.title}</div>
+              <div class="tab-title">${shortTitle}</div>
               <div class="tab-url">${domain}</div>
             </div>
           </div>
