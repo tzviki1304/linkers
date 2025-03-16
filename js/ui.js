@@ -74,39 +74,47 @@ class UI {
   showModal(content) {
     this.modalContent.innerHTML = content;
     this.modalContainer.classList.remove('hidden');
+    
+    // Add focus to the first input if exists
+    setTimeout(() => {
+      const firstInput = this.modalContent.querySelector('input');
+      if (firstInput) {
+        firstInput.focus();
+      }
+    }, 100);
   }
 
   closeModal() {
-    this.modalContainer.classList.add('hidden');
+    // Add a fade-out effect
+    this.modalContainer.style.opacity = '0';
+    
+    setTimeout(() => {
+      this.modalContainer.classList.add('hidden');
+      this.modalContainer.style.opacity = '1';
+    }, 300);
   }
 
   showToast(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.className = `toast fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded shadow-lg z-50 ${
-      type === 'success' ? 'bg-green-500' : 'bg-red-500'
-    } text-white flex items-center`;
+    toast.className = `toast toast-${type}`;
     
-    const icon = document.createElement('span');
-    icon.className = 'material-icons mr-2';
-    icon.textContent = type === 'success' ? 'check_circle' : 'error';
+    const iconName = type === 'success' ? 'check_circle' : 'error';
     
-    const textSpan = document.createElement('span');
-    textSpan.textContent = message;
+    toast.innerHTML = `
+      <div class="toast-icon">
+        <span class="material-icons">${iconName}</span>
+      </div>
+      <div class="toast-message">${message}</div>
+    `;
     
-    toast.appendChild(icon);
-    toast.appendChild(textSpan);
     document.body.appendChild(toast);
     
-    // Add fade-in animation
-    toast.style.opacity = '0';
-    setTimeout(() => {
-      toast.style.opacity = '1';
-      toast.style.transition = 'opacity 0.3s ease-in-out';
-    }, 10);
-    
-    // Add fade-out before removing
+    // Ensure the toast is visible before setting transition
     setTimeout(() => {
       toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%, 10px)';
+      toast.style.transition = 'all 0.3s ease';
+      
       setTimeout(() => {
         toast.remove();
       }, 300);
@@ -116,18 +124,21 @@ class UI {
   createConfirmDialog(message, onConfirm) {
     const content = `
       <div class="modal-header">
-        <h3 class="modal-title">Confirm</h3>
-        <button class="modal-close" id="closeModalBtn">×</button>
+        <h3 class="modal-title">Confirm Action</h3>
+        <button class="modal-close" id="closeModalBtn"></button>
       </div>
-      <div class="p-4">
-        <div class="flex items-center mb-4 text-gray-700 dark:text-gray-300">
+      <div class="modal-content-body">
+        <div class="flex items-center">
           <span class="material-icons text-red-500 mr-3" style="font-size: 24px;">warning</span>
           <p>${message}</p>
         </div>
-        <div class="modal-footer">
-          <button class="btn bg-gray-300 text-gray-700 hover:bg-gray-400" id="cancelBtn">Cancel</button>
-          <button class="btn bg-red-500 hover:bg-red-600" id="confirmBtn">Confirm</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="modal-btn modal-btn-danger" id="confirmBtn">
+          <span class="material-icons" style="font-size: 18px; margin-right: 6px;">delete</span>
+          Confirm
+        </button>
       </div>
     `;
     
@@ -145,9 +156,9 @@ class UI {
     let formContent = `
       <div class="modal-header">
         <h3 class="modal-title">${title}</h3>
-        <button class="modal-close" id="closeModalBtn">×</button>
+        <button class="modal-close" id="closeModalBtn"></button>
       </div>
-      <form id="modalForm" class="p-4">
+      <form id="modalForm">
     `;
     
     fields.forEach(field => {
@@ -155,16 +166,17 @@ class UI {
       formContent += `
         <div class="form-group">
           <label for="${field.name}" class="form-label">${field.label}</label>
-          <input type="${field.type}" id="${field.name}" name="${field.name}" class="form-input" value="${value}" ${field.required ? 'required' : ''}>
+          <input type="${field.type}" id="${field.name}" name="${field.name}" class="form-input" 
+                 placeholder="Enter ${field.label.toLowerCase()}" value="${value}" ${field.required ? 'required' : ''}>
         </div>
       `;
     });
     
     formContent += `
         <div class="modal-footer">
-          <button type="button" class="btn bg-gray-300 text-gray-700 hover:bg-gray-400" id="cancelBtn">Cancel</button>
-          <button type="submit" class="btn flex items-center">
-            <span class="material-icons mr-1" style="font-size: 18px;">save</span>
+          <button type="button" class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
+          <button type="submit" class="modal-btn modal-btn-primary">
+            <span class="material-icons">save</span>
             Save
           </button>
         </div>

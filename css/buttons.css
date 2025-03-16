@@ -8,6 +8,9 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   width: 36px;
   height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-sm {
@@ -38,6 +41,80 @@
   @apply from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700;
 }
 
+/* Modal Buttons - ensure these are included */
+.modal-btn {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  height: 40px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.modal-btn:hover {
+  transform: translateY(-1px);
+}
+
+.modal-btn:active {
+  transform: translateY(0);
+}
+
+.modal-btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.modal-btn-primary:hover {
+  background-color: #2563eb;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+}
+
+.modal-btn-secondary {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.dark .modal-btn-secondary {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+.modal-btn-secondary:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.dark .modal-btn-secondary:hover {
+  background-color: #4b5563;
+  color: #f9fafb;
+}
+
+.modal-btn-danger {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+}
+
+.modal-btn-danger:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2), 0 2px 4px -1px rgba(239, 68, 68, 0.1);
+}
+
+.modal-btn .material-icons {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+/* Tab buttons and other existing button styles */
 .tab-btn {
   @apply flex items-center justify-center rounded-md mx-1
          transition-all duration-200;
