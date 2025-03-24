@@ -399,3 +399,101 @@
   gap: 1rem;
   padding: 0.5rem;
 }
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .tab-btn {
+  background: rgba(17, 25, 40, 0.3);
+  border-color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(62, 198, 255, 0.1);
+  border-color: rgba(62, 198, 255, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 0 15px rgba(62, 198, 255, 0.2);
+}
+
+.dark .tab-btn:hover {
+  background: rgba(45, 212, 191, 0.1);
+  border-color: rgba(45, 212, 191, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 15px rgba(45, 212, 191, 0.2);
+}
+
+.tab-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 0 10px rgba(62, 198, 255, 0.15);
+}
+
+.dark .tab-btn:active {
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 0 10px rgba(45, 212, 191, 0.15);
+}
+
+.save-tab-btn {
+  background: linear-gradient(135deg, rgba(62, 198, 255, 0.8), rgba(45, 212, 191, 0.8));
+  border-color: rgba(62, 198, 255, 0.3);
+  color: white;
+  box-shadow: 0 4px 15px rgba(62, 198, 255, 0.3);
+}
+
+.save-tab-btn:hover {
+  background: linear-gradient(135deg, rgba(62, 198, 255, 0.9), rgba(45, 212, 191, 0.9));
+  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4);
+}
+
+.dark .save-tab-btn {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.8), rgba(168, 85, 247, 0.8));
+  border-color: rgba(45, 212, 191, 0.3);
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
+}
+
+.dark .save-tab-btn:hover {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.9), rgba(168, 85, 247, 0.9));
+  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
+}
+
+.go-to-tab-btn {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.8));
+  border-color: rgba(16, 185, 129, 0.3);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.go-to-tab-btn:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.dark .go-to-tab-btn {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.8));
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.dark .go-to-tab-btn:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
+}

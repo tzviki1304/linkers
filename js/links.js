@@ -18,33 +18,36 @@ class LinksManager {
     
     const workspace = state.workspaces[state.activeWorkspace];
     const category = workspace.categories[state.activeCategory];
-    
-    // Find the placeholder for this category's links
     const linksPlaceholder = document.querySelector(`.links-container-placeholder[data-category-index="${state.activeCategory}"]`);
     if (!linksPlaceholder) return;
     
-    // Clear the placeholder
     linksPlaceholder.innerHTML = '';
     
-    // Add a header with add link button
     const linksHeader = document.createElement('div');
-    linksHeader.className = 'flex justify-between items-center mb-2 text-sm';
+    linksHeader.className = 'flex justify-between items-center mb-2';
     linksHeader.innerHTML = `
-      <span class="font-semibold text-gray-700 dark:text-gray-300">Links</span>
-      <button class="btn-icon btn-sm add-link-btn" title="Add Link">
-        <span class="material-icons" style="font-size: 14px">add</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <span class="font-medium text-gray-700 dark:text-gray-300">Links</span>
+        <span class="text-sm text-gray-500 dark:text-gray-400">${category.links.length} items</span>
+      </div>
+      <div class="actions-group">
+        <button class="btn-icon btn-sm add-link-btn" title="Add Link">
+          <span class="material-icons" style="font-size: 16px">add</span>
+        </button>
+      </div>
     `;
     linksPlaceholder.appendChild(linksHeader);
     
-    // Add each link
     if (category.links.length === 0) {
       const emptyMessage = document.createElement('div');
-      emptyMessage.className = 'text-gray-500 dark:text-gray-400 text-center text-xs py-2';
-      emptyMessage.textContent = 'No links in this category';
+      emptyMessage.className = 'empty-message';
+      emptyMessage.innerHTML = `
+        <span class="material-icons">link_off</span>
+        <p>No links in this category</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Drag tabs here or add manually</p>
+      `;
       linksPlaceholder.appendChild(emptyMessage);
     } else {
-      // Create a grid container for card-style links
       const linksGrid = document.createElement('div');
       linksGrid.className = 'links-grid';
       linksPlaceholder.appendChild(linksGrid);
@@ -53,7 +56,6 @@ class LinksManager {
         const linkElement = document.createElement('div');
         linkElement.className = 'link-card';
         
-        // Format URL for display
         let displayUrl;
         try {
           const url = new URL(link.url);
@@ -74,15 +76,17 @@ class LinksManager {
             </div>
           </div>
           <div class="link-card-actions">
-            <a href="${link.url}" target="_blank" class="link-card-btn visit-btn" title="Visit Link">
-              <span class="material-icons">open_in_new</span>
-            </a>
-            <button class="link-card-btn edit-link-btn" title="Edit Link" data-index="${index}">
-              <span class="material-icons">edit</span>
-            </button>
-            <button class="link-card-btn delete-link-btn" title="Delete Link" data-index="${index}">
-              <span class="material-icons">delete</span>
-            </button>
+            <div class="actions-group">
+              <a href="${link.url}" target="_blank" class="btn-icon btn-sm visit-btn" title="Visit Link">
+                <span class="material-icons">open_in_new</span>
+              </a>
+              <button class="btn-icon btn-sm edit-link-btn" title="Edit Link" data-index="${index}">
+                <span class="material-icons">edit</span>
+              </button>
+              <button class="btn-icon btn-sm delete-link-btn" title="Delete Link" data-index="${index}">
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
           </div>
         `;
         

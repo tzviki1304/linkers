@@ -164,11 +164,13 @@ class UI {
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-modern" id="cancelBtn">Cancel</button>
-        <button class="btn-modern accent-red" id="confirmBtn">
-          <span class="material-icons" style="font-size: 18px; margin-right: 6px;">delete</span>
-          Confirm
-        </button>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
+          <button class="modal-btn modal-btn-danger" id="confirmBtn">
+            <span class="material-icons">delete</span>
+            Confirm
+          </button>
+        </div>
       </div>
     `;
     
@@ -209,11 +211,13 @@ class UI {
     formContent += `
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn-modern" id="cancelBtn">Cancel</button>
-          <button type="submit" class="btn-modern accent-blue">
-            <span class="material-icons" style="font-size: 18px; margin-right: 6px;">save</span>
-            Save
-          </button>
+          <div class="modal-actions">
+            <button type="button" class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
+            <button type="submit" class="modal-btn modal-btn-primary">
+              <span class="material-icons">save</span>
+              Save
+            </button>
+          </div>
         </div>
       </form>
     `;

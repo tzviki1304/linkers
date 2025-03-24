@@ -1,31 +1,53 @@
+/* Common button group styles */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .btn {
-  @apply px-4 py-2 rounded-lg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(135deg, rgba(62, 198, 255, 0.8), rgba(45, 212, 191, 0.8));
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(62, 198, 255, 0.3),
-              0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(62, 198, 255, 0.3);
   text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4),
-              0 0 0 2px rgba(62, 198, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4);
+}
+
+.dark .btn {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.8), rgba(168, 85, 247, 0.8));
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+}
+
+.dark .btn:hover {
+  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
 }
 
 .btn-icon {
-  @apply p-2 rounded-lg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -44,8 +66,9 @@
   transition: opacity 0.3s ease;
 }
 
-.btn-icon:hover::before {
-  opacity: 1;
+.btn-icon .material-icons {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
 }
 
 .btn-icon:hover {
@@ -54,123 +77,56 @@
   color: rgba(255, 255, 255, 1);
 }
 
+.btn-icon:hover::before {
+  opacity: 1;
+}
+
+.btn-icon:hover .material-icons {
+  transform: scale(1.1);
+}
+
 .dark .btn-icon {
   background: rgba(17, 25, 40, 0.7);
   border-color: rgba(255, 255, 255, 0.05);
 }
 
-.btn-modern {
-  @apply rounded-lg;
-  padding: 0.6rem 1.2rem;
-  background: linear-gradient(135deg, 
-    rgba(62, 198, 255, 0.9),
-    rgba(45, 212, 191, 0.9)
-  );
-  color: white;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
+.dark .btn-icon::before {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.5), rgba(168, 85, 247, 0.5));
 }
 
-.btn-modern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: 0.5s;
+.dark .btn-icon:hover {
+  box-shadow: 0 5px 15px rgba(45, 212, 191, 0.2);
 }
 
-.btn-modern:hover::before {
-  left: 100%;
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
 }
 
-.btn-modern:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4);
+.btn-icon.btn-sm {
+  width: 2rem;
+  height: 2rem;
 }
 
-.dark .btn-modern {
-  background: linear-gradient(135deg, 
-    rgba(45, 212, 191, 0.9),
-    rgba(168, 85, 247, 0.9)
-  );
+.btn-icon.btn-sm .material-icons {
+  font-size: 1rem;
 }
 
-.btn-modern.accent-blue {
-  background: linear-gradient(135deg, #3898FF, #3B82F6);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+/* Action buttons group */
+.actions-group {
+  display: inline-flex;
+  gap: 0.5rem;
 }
 
-.btn-modern.accent-green {
-  background: linear-gradient(135deg, #2DD4BF, #059669);
-  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
+.actions-group .btn-icon {
+  margin: 0;
 }
 
-.btn-modern.accent-purple {
-  background: linear-gradient(135deg, #A855F7, #7C3AED);
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+/* Button animations */
+.btn, .btn-icon {
+  will-change: transform;
 }
 
-.btn-modern.accent-amber {
-  background: linear-gradient(135deg, #F59E0B, #D97706);
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-}
-
-/* Modal Buttons */
-.modal-btn {
-  @apply rounded-lg;
-  padding: 0.7rem 1.4rem;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 100px;
-  position: relative;
-  overflow: hidden;
-}
-
-.modal-btn-primary {
-  background: linear-gradient(135deg, #3898FF, #3B82F6);
-  color: white;
-  border: none;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-}
-
-.modal-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-}
-
-.modal-btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dark .modal-btn-secondary {
-  background: rgba(17, 25, 40, 0.7);
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-.modal-btn-danger {
-  background: linear-gradient(135deg, #EF4444, #DC2626);
-  color: white;
-  border: none;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-}
-
-.modal-btn-danger:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+.btn:active, .btn-icon:active {
+  transform: translateY(1px);
 }

@@ -13,14 +13,14 @@
     <!-- Header Bar -->
     <div class="header-bar flex justify-between items-center p-2 bg-white dark:bg-gray-700 rounded-lg shadow mb-4">
       <h1 class="text-xl font-bold text-gray-800 dark:text-white">Link Saver</h1>
-      <div class="controls flex space-x-2">
-        <button id="themeToggle" class="btn btn-icon" title="Toggle Theme">
+      <div class="actions-group">
+        <button id="themeToggle" class="btn-icon" title="Toggle Theme">
           <span class="material-icons">dark_mode</span>
         </button>
-        <button id="exportBtn" class="btn btn-icon" title="Export Data">
+        <button id="exportBtn" class="btn-icon" title="Export Data">
           <span class="material-icons">file_download</span>
         </button>
-        <button id="importBtn" class="btn btn-icon" title="Import Data">
+        <button id="importBtn" class="btn-icon" title="Import Data">
           <span class="material-icons">file_upload</span>
         </button>
         <input type="file" id="importFile" class="hidden" accept=".json">
@@ -33,18 +33,18 @@
       <div class="panel bg-white dark:bg-gray-700 rounded-lg shadow p-3">
         <div class="flex justify-between items-center mb-2">
           <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Workspaces</h2>
-          <button id="addWorkspaceBtn" class="btn btn-icon btn-sm" title="Add Workspace">
+          <button id="addWorkspaceBtn" class="btn-icon btn-sm" title="Add Workspace">
             <span class="material-icons">add</span>
           </button>
         </div>
         <div id="workspacesList" class="space-y-2"></div>
       </div>
       
-      <!-- Categories Panel - now in the middle with 65% width -->
+      <!-- Categories Panel -->
       <div class="panel bg-white dark:bg-gray-700 rounded-lg shadow p-3">
         <div class="flex justify-between items-center mb-2">
           <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Categories</h2>
-          <button id="addCategoryBtn" class="btn btn-icon btn-sm" title="Add Category">
+          <button id="addCategoryBtn" class="btn-icon btn-sm" title="Add Category">
             <span class="material-icons">add</span>
           </button>
         </div>
@@ -55,7 +55,7 @@
       <div class="panel bg-white dark:bg-gray-700 rounded-lg shadow p-3">
         <div class="flex justify-between items-center mb-2">
           <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Open Tabs</h2>
-          <button id="refreshTabsBtn" class="btn btn-icon btn-sm" title="Refresh Tabs">
+          <button id="refreshTabsBtn" class="btn-icon btn-sm" title="Refresh Tabs">
             <span class="material-icons">refresh</span>
           </button>
         </div>
@@ -64,7 +64,7 @@
     </div>
   </div>
   
-  <!-- Modal Templates -->
+  <!-- Modal Container -->
   <div id="modalContainer" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
     <div class="modal bg-white dark:bg-gray-700 rounded-lg shadow-lg p-4 max-w-md w-full">
       <div id="modalContent"></div>

@@ -52,12 +52,12 @@ class WorkspacesManager {
             </div>
             <span class="workspace-name">${workspace.name}</span>
           </div>
-          <div class="workspace-actions">
-            <button class="btn-icon edit-workspace-btn" title="Edit Workspace">
-              <span class="material-icons" style="font-size: 16px;">edit</span>
+          <div class="actions-group">
+            <button class="btn-icon btn-sm edit-workspace-btn" title="Edit Workspace">
+              <span class="material-icons">edit</span>
             </button>
-            <button class="btn-icon delete-workspace-btn" title="Delete Workspace">
-              <span class="material-icons" style="font-size: 16px;">delete</span>
+            <button class="btn-icon btn-sm delete-workspace-btn" title="Delete Workspace">
+              <span class="material-icons">delete</span>
             </button>
           </div>
         </div>

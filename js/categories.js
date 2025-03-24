@@ -29,7 +29,19 @@ class CategoriesManager {
     const workspace = state.workspaces[state.activeWorkspace];
     
     if (workspace.categories.length === 0) {
-      this.categoriesList.innerHTML = '<div class="text-gray-500 dark:text-gray-400 text-center py-4">No categories</div>';
+      this.categoriesList.innerHTML = `
+        <div class="empty-message">
+          <span class="material-icons">folder</span>
+          <p>No categories</p>
+          <button class="btn mt-3 flex items-center gap-2 mx-auto">
+            <span class="material-icons" style="font-size: 20px;">add_circle</span>
+            Create Category
+          </button>
+        </div>`;
+
+      this.categoriesList.querySelector('button').addEventListener('click', () => {
+        this.showAddCategoryModal();
+      });
       return;
     }
     
@@ -39,18 +51,23 @@ class CategoriesManager {
       categoryElement.dataset.index = index;
       
       categoryElement.innerHTML = `
-        <span class="category-name">${category.name}</span>
-        <div class="category-actions">
-          <button class="btn-icon btn-sm edit-category-btn" title="Edit">
-            <span class="material-icons">edit</span>
-          </button>
-          <button class="btn-icon btn-sm delete-category-btn" title="Delete">
-            <span class="material-icons">delete</span>
-          </button>
+        <div class="category-content">
+          <div class="category-header">
+            <span class="category-name">${category.name}</span>
+            <span class="category-count text-sm text-gray-500 dark:text-gray-400">
+              ${category.links?.length || 0} links
+            </span>
+          </div>
+          <div class="actions-group">
+            <button class="btn-icon btn-sm edit-category-btn" title="Edit Category">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="btn-icon btn-sm delete-category-btn" title="Delete Category">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
         </div>
       `;
-      
-      this.categoriesList.appendChild(categoryElement);
       
       // Create a category container to hold both the category item and its links
       const categoryContainer = document.createElement('div');
@@ -58,8 +75,8 @@ class CategoriesManager {
       categoryContainer.dataset.index = index;
       
       // Move the category element into the container
-      categoryElement.parentNode.replaceChild(categoryContainer, categoryElement);
       categoryContainer.appendChild(categoryElement);
+      this.categoriesList.appendChild(categoryContainer);
       
       // Add click listener to select category
       categoryElement.addEventListener('click', (event) => {
@@ -78,17 +95,16 @@ class CategoriesManager {
         this.showDeleteCategoryConfirmation(index);
       });
       
-      // Add drag and drop functionality to the category element
+      // Add drag and drop functionality
       this.setupDragAndDrop(categoryElement, index);
       
-      // Now create a placeholder for the links container that will be populated
-      // by the LinksManager, and make it a drop target as well
+      // Create a placeholder for the links container
       const linksContainer = document.createElement('div');
       linksContainer.className = 'links-container-placeholder pl-4 mb-4';
       linksContainer.dataset.categoryIndex = index;
       categoryContainer.appendChild(linksContainer);
       
-      // Add drag and drop functionality to the links container as well
+      // Setup drag and drop for the links container
       this.setupDragAndDrop(linksContainer, index);
     });
   }
