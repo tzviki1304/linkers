@@ -53,6 +53,13 @@ class UI {
         this.closeModal();
       }
     });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !this.modalContainer.classList.contains('hidden')) {
+        this.closeModal();
+      }
+    });
   }
 
   updateTheme(theme) {
@@ -63,19 +70,27 @@ class UI {
       document.documentElement.classList.remove('dark');
       this.themeToggle.querySelector('.material-icons').textContent = 'dark_mode';
     }
-    
-    // Add a transition effect when switching themes
-    document.body.classList.add('theme-transition');
-    setTimeout(() => {
-      document.body.classList.remove('theme-transition');
-    }, 300);
   }
 
   showModal(content) {
+    // Add modal-open class to body to prevent background scroll
+    document.body.classList.add('modal-open');
+    
+    // Reset modal state
+    this.modalContent.style.transform = 'translateY(-20px)';
+    this.modalContent.style.opacity = '0';
     this.modalContent.innerHTML = content;
+    
+    // Show modal
     this.modalContainer.classList.remove('hidden');
     
-    // Add focus to the first input if exists
+    // Trigger animation on next frame
+    requestAnimationFrame(() => {
+      this.modalContent.style.transform = 'translateY(0)';
+      this.modalContent.style.opacity = '1';
+    });
+
+    // Focus first input if exists
     setTimeout(() => {
       const firstInput = this.modalContent.querySelector('input');
       if (firstInput) {
@@ -85,12 +100,20 @@ class UI {
   }
 
   closeModal() {
-    // Add a fade-out effect
-    this.modalContainer.style.opacity = '0';
+    // Start close animation
+    this.modalContent.style.transform = 'translateY(-20px)';
+    this.modalContent.style.opacity = '0';
     
+    // Remove modal-open class from body
+    document.body.classList.remove('modal-open');
+    
+    // Hide modal after animation
     setTimeout(() => {
       this.modalContainer.classList.add('hidden');
-      this.modalContainer.style.opacity = '1';
+      // Reset modal state
+      this.modalContent.innerHTML = '';
+      this.modalContent.style.transform = 'translateY(0)';
+      this.modalContent.style.opacity = '1';
     }, 300);
   }
 
@@ -109,11 +132,16 @@ class UI {
     
     document.body.appendChild(toast);
     
-    // Ensure the toast is visible before setting transition
+    // Show toast with animation
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, 0)';
+    });
+    
+    // Hide and remove toast
     setTimeout(() => {
       toast.style.opacity = '0';
-      toast.style.transform = 'translate(-50%, 10px)';
-      toast.style.transition = 'all 0.3s ease';
+      toast.style.transform = 'translate(-50%, 20px)';
       
       setTimeout(() => {
         toast.remove();
@@ -125,17 +153,19 @@ class UI {
     const content = `
       <div class="modal-header">
         <h3 class="modal-title">Confirm Action</h3>
-        <button class="modal-close" id="closeModalBtn"></button>
+        <button class="modal-close" id="closeModalBtn">
+          <span class="material-icons">close</span>
+        </button>
       </div>
-      <div class="modal-content-body">
+      <div class="modal-body">
         <div class="flex items-center">
           <span class="material-icons text-red-500 mr-3" style="font-size: 24px;">warning</span>
-          <p>${message}</p>
+          <p class="text-gray-700 dark:text-gray-300">${message}</p>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
-        <button class="modal-btn modal-btn-danger" id="confirmBtn">
+        <button class="btn-modern" id="cancelBtn">Cancel</button>
+        <button class="btn-modern accent-red" id="confirmBtn">
           <span class="material-icons" style="font-size: 18px; margin-right: 6px;">delete</span>
           Confirm
         </button>
@@ -156,9 +186,12 @@ class UI {
     let formContent = `
       <div class="modal-header">
         <h3 class="modal-title">${title}</h3>
-        <button class="modal-close" id="closeModalBtn"></button>
+        <button class="modal-close" id="closeModalBtn">
+          <span class="material-icons">close</span>
+        </button>
       </div>
       <form id="modalForm">
+        <div class="modal-body">
     `;
     
     fields.forEach(field => {
@@ -167,16 +200,18 @@ class UI {
         <div class="form-group">
           <label for="${field.name}" class="form-label">${field.label}</label>
           <input type="${field.type}" id="${field.name}" name="${field.name}" class="form-input" 
-                 placeholder="Enter ${field.label.toLowerCase()}" value="${value}" ${field.required ? 'required' : ''}>
+                 placeholder="${field.placeholder || `Enter ${field.label.toLowerCase()}`}" 
+                 value="${value}" ${field.required ? 'required' : ''}>
         </div>
       `;
     });
     
     formContent += `
+        </div>
         <div class="modal-footer">
-          <button type="button" class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
-          <button type="submit" class="modal-btn modal-btn-primary">
-            <span class="material-icons">save</span>
+          <button type="button" class="btn-modern" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn-modern accent-blue">
+            <span class="material-icons" style="font-size: 18px; margin-right: 6px;">save</span>
             Save
           </button>
         </div>

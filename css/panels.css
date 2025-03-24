@@ -1,38 +1,113 @@
-/* Panel and Panel Content styles - fixed for scrolling */
 .panel {
   display: flex;
   flex-direction: column;
   height: 100%;
   max-height: calc(100vh - 80px);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  overflow: hidden; /* Important: prevent panel itself from scrolling */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(62, 198, 255, 0.3),
+    rgba(255, 82, 182, 0.3)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.dark .panel {
+  background: rgba(17, 25, 40, 0.5);
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.dark .panel::before {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.3),
+    rgba(168, 85, 247, 0.3)
+  );
 }
 
 .panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(62, 198, 255, 0.2),
+    inset 0 0 20px rgba(62, 198, 255, 0.1);
+}
+
+.dark .panel:hover {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(45, 212, 191, 0.2),
+    inset 0 0 20px rgba(45, 212, 191, 0.1);
 }
 
 .panel-header {
-  @apply flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600;
-  flex-shrink: 0;
+  @apply flex justify-between items-center mb-3 pb-3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
   position: sticky;
   top: 0;
-  background: inherit;
   z-index: 5;
+  backdrop-filter: blur(10px);
+}
+
+.dark .panel-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+  background: rgba(17, 25, 40, 0.3);
+}
+
+.panel-header h2 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px rgba(62, 198, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dark .panel-header h2 {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+}
+
+.panel-header .material-icons {
+  color: rgba(62, 198, 255, 0.9);
+  text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
+}
+
+.dark .panel-header .material-icons {
+  color: rgba(45, 212, 191, 0.9);
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
 }
 
 .panel-content {
   flex: 1 1 auto;
-  overflow-y: auto !important; /* Force scroll */
+  overflow-y: auto !important;
   overflow-x: hidden;
   height: auto;
-  max-height: calc(100% - 60px); /* Account for header height */
-  padding-right: 4px;
+  max-height: calc(100% - 80px);
+  padding: 1.5rem;
   scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  scrollbar-color: rgba(62, 198, 255, 0.3) transparent;
 }
 
 .panel-content::-webkit-scrollbar {
@@ -44,11 +119,12 @@
 }
 
 .panel-content::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
+  background-color: rgba(62, 198, 255, 0.3);
   border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
-/* Panel Headers */
-.panel > div:first-child {
-  @apply border-b border-gray-200 dark:border-gray-600 pb-2 mb-3;
+.dark .panel-content::-webkit-scrollbar-thumb {
+  background-color: rgba(45, 212, 191, 0.3);
 }

@@ -1,246 +1,176 @@
 .btn {
-  @apply px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  @apply px-4 py-2 rounded-lg;
+  background: linear-gradient(135deg, rgba(62, 198, 255, 0.8), rgba(45, 212, 191, 0.8));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(62, 198, 255, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4),
+              0 0 0 2px rgba(62, 198, 255, 0.2);
 }
 
 .btn-icon {
-  @apply p-1 rounded-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  width: 36px;
-  height: 36px;
+  @apply p-2 rounded-lg;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0.7rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
-.btn-sm {
-  @apply text-sm;
-  width: 28px;
-  height: 28px;
+.btn-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(62, 198, 255, 0.5), rgba(255, 82, 182, 0.5));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Modern Buttons */
+.btn-icon:hover::before {
+  opacity: 1;
+}
+
+.btn-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(62, 198, 255, 0.2);
+  color: rgba(255, 255, 255, 1);
+}
+
+.dark .btn-icon {
+  background: rgba(17, 25, 40, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
 .btn-modern {
-  @apply p-1.5 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 
-         text-gray-700 hover:shadow-md transition-all duration-200 
-         flex items-center justify-center;
-  min-width: 32px;
-  min-height: 32px;
-  border: 0px solid rgba(0, 0, 0, 0.1);
+  @apply rounded-lg;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, 
+    rgba(62, 198, 255, 0.9),
+    rgba(45, 212, 191, 0.9)
+  );
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
 }
 
-.dark .btn-modern {
-  @apply from-gray-700 to-gray-800 text-white;
-  border: 0px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn-modern:hover::before {
+  left: 100%;
 }
 
 .btn-modern:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4);
 }
 
-.dark .btn-modern:hover {
-  @apply from-gray-600 to-gray-700;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
-}
-
-.btn-modern i, 
-.btn-modern .material-icons,
-.btn-modern svg {
-  color: inherit;
-  transition: all 0.3s ease;
-}
-
-.dark .btn-modern i, 
-.dark .btn-modern .material-icons,
-.dark .btn-modern svg {
-  color: #e0e7ff;
-  filter: drop-shadow(0 0 2px rgba(219, 234, 254, 0.3));
+.dark .btn-modern {
+  background: linear-gradient(135deg, 
+    rgba(45, 212, 191, 0.9),
+    rgba(168, 85, 247, 0.9)
+  );
 }
 
 .btn-modern.accent-blue {
-  @apply from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700;
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
-}
-
-.dark .btn-modern.accent-blue {
-  @apply from-blue-600 to-blue-800;
-  box-shadow: 0 2px 6px rgba(30, 64, 175, 0.5), inset 0 1px 0 rgba(191, 219, 254, 0.3);
+  background: linear-gradient(135deg, #3898FF, #3B82F6);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .btn-modern.accent-green {
-  @apply from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700;
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
-}
-
-.dark .btn-modern.accent-green {
-  @apply from-green-600 to-green-800;
-  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.5), inset 0 1px 0 rgba(167, 243, 208, 0.3);
+  background: linear-gradient(135deg, #2DD4BF, #059669);
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
 }
 
 .btn-modern.accent-purple {
-  @apply from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700;
-  box-shadow: 0 2px 6px rgba(126, 34, 206, 0.3);
-}
-
-.dark .btn-modern.accent-purple {
-  @apply from-purple-600 to-purple-800;
-  box-shadow: 0 2px 6px rgba(107, 33, 168, 0.5), inset 0 1px 0 rgba(216, 180, 254, 0.3);
+  background: linear-gradient(135deg, #A855F7, #7C3AED);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
 }
 
 .btn-modern.accent-amber {
-  @apply from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700;
-  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
 }
 
-.dark .btn-modern.accent-amber {
-  @apply from-amber-500 to-amber-700;
-  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.5), inset 0 1px 0 rgba(252, 211, 77, 0.3);
-}
-
-/* Modal Buttons - ensure these are included */
+/* Modal Buttons */
 .modal-btn {
-  padding: 10px 16px;
-  font-size: 14px;
+  @apply rounded-lg;
+  padding: 0.7rem 1.4rem;
   font-weight: 500;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 90px;
-  height: 40px;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.modal-btn:hover {
-  transform: translateY(-1px);
-}
-
-.modal-btn:active {
-  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+  position: relative;
+  overflow: hidden;
 }
 
 .modal-btn-primary {
-  background-color: #3b82f6;
+  background: linear-gradient(135deg, #3898FF, #3B82F6);
   color: white;
   border: none;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 .modal-btn-primary:hover {
-  background-color: #2563eb;
-  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
 }
 
 .modal-btn-secondary {
-  background-color: #f3f4f6;
-  color: #4b5563;
-  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .dark .modal-btn-secondary {
-  background-color: #374151;
-  color: #e5e7eb;
-  border-color: #4b5563;
-}
-
-.modal-btn-secondary:hover {
-  background-color: #e5e7eb;
-  color: #111827;
-}
-
-.dark .modal-btn-secondary:hover {
-  background-color: #4b5563;
-  color: #f9fafb;
+  background: rgba(17, 25, 40, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .modal-btn-danger {
-  background-color: #ef4444;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
   color: white;
   border: none;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .modal-btn-danger:hover {
-  background-color: #dc2626;
-  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2), 0 2px 4px -1px rgba(239, 68, 68, 0.1);
-}
-
-.modal-btn .material-icons {
-  font-size: 18px;
-  margin-right: 6px;
-}
-
-/* Tab buttons and other existing button styles */
-.tab-btn {
-  @apply flex items-center justify-center rounded-md mx-1
-         transition-all duration-200;
-  padding: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  width: 32px;
-  height: 32px;
-  background: white;
-  color: #4b5563;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.dark .tab-btn {
-  background: #4b5563;
-  color: #e5e7eb;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.tab-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-.tab-btn .material-icons {
-  font-size: 18px;
-}
-
-/* Save Button */
-.save-tab-btn {
-  @apply btn-modern;
-  min-width: 28px;
-  min-height: 28px;
-  color: #2563eb;
-  background: rgba(219, 234, 254, 0.7);
-}
-
-.dark .save-tab-btn {
-  color: #93c5fd;
-  background: linear-gradient(135deg, rgba(30, 64, 175, 0.6), rgba(59, 130, 246, 0.4));
-  border-color: rgba(147, 197, 253, 0.3);
-}
-
-.save-tab-btn:hover {
-  background: rgba(219, 234, 254, 1);
-}
-
-.dark .save-tab-btn:hover {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.7), rgba(59, 130, 246, 0.5));
-  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(147, 197, 253, 0.4);
-}
-
-.go-to-tab-btn {
-  color: #059669;
-  background: rgba(209, 250, 229, 0.7);
-}
-
-.dark .go-to-tab-btn {
-  color: #6ee7b7;
-  background: linear-gradient(135deg, rgba(6, 78, 59, 0.6), rgba(5, 150, 105, 0.4));
-  border-color: rgba(110, 231, 183, 0.3);
-}
-
-.go-to-tab-btn:hover {
-  background: rgba(209, 250, 229, 1);
-}
-
-.dark .go-to-tab-btn:hover {
-  background: linear-gradient(135deg, rgba(5, 150, 105, 0.7), rgba(16, 185, 129, 0.5));
-  box-shadow: 0 3px 8px rgba(5, 150, 105, 0.4), inset 0 1px 0 rgba(110, 231, 183, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
 }

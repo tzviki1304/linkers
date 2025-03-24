@@ -6,43 +6,27 @@
   <title>Link Saver</title>
   <link href="css/tailwind.min.css" rel="stylesheet">
   <link href="css/material-icons.css" rel="stylesheet">
-  <!-- Updated CSS file structure -->
   <link href="css/base.css" rel="stylesheet">
   <link href="css/buttons.css" rel="stylesheet">
-  <link href="css/panels.css" rel="stylesheet">
   <link href="css/items.css" rel="stylesheet">
+  <link href="css/layout.css" rel="stylesheet">
+  <link href="css/panels.css" rel="stylesheet">
   <link href="css/modal.css" rel="stylesheet">
   <link href="css/animations.css" rel="stylesheet">
-  <link href="css/layout.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-  </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-800 transition-colors duration-200">
-  <div class="container">
+  <div class="container mx-auto">
     <!-- Header Bar -->
-    <div class="header-bar flex justify-between items-center p-3 bg-white bg-opacity-90 dark:bg-gray-700 dark:bg-opacity-90 shadow-lg mb-2">
-      <div class="flex items-center">
-        <img src="icons/icon16.png" alt="Logo" class="w-6 h-6 mr-2">
-        <h1 class="text-xl font-bold text-gray-800 dark:text-white mr-6">Link Saver</h1>
-        <a href="https://buymeacoffee.com/tzviki" target="_blank" class="btn-modern accent-yellow flex items-center ml-4" title="Support Me" dir="rtl">
-          <span class="material-icons mr-1">local_cafe</span>
-          <span class="hidden sm:inline">פנק בקפה</span>
-        </a>
-      </div>
+    <div class="header-bar flex justify-between items-center p-4 bg-white dark:bg-gray-700 rounded-lg shadow mb-6">
+      <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Link Saver</h1>
       <div class="controls flex space-x-3">
-        <button id="themeToggle" class="btn-modern" title="Toggle Theme">
+        <button id="themeToggle" class="btn-icon" title="Toggle Theme">
           <span class="material-icons">dark_mode</span>
         </button>
-        <button id="exportBtn" class="btn-modern accent-green" title="Export Data">
+        <button id="exportBtn" class="btn-icon" title="Export Data">
           <span class="material-icons">file_download</span>
         </button>
-        <button id="importBtn" class="btn-modern accent-blue" title="Import Data">
+        <button id="importBtn" class="btn-icon" title="Import Data">
           <span class="material-icons">file_upload</span>
         </button>
         <input type="file" id="importFile" class="hidden" accept=".json">
@@ -52,59 +36,44 @@
     <!-- Main Content -->
     <div class="main-content">
       <!-- Workspaces Panel -->
-      <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
-          <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
-            <span class="material-icons mr-2">dashboard</span>
-            Workspaces
-          </h2>
-          <button id="addWorkspaceBtn" class="btn btn-icon flex items-center justify-center" title="Add Workspace">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Workspaces</h2>
+          <button id="addWorkspaceBtn" class="btn-icon" title="Add Workspace">
             <span class="material-icons">add</span>
           </button>
         </div>
-        <div class="panel-content" style="overflow-y: auto;">
-          <div id="workspacesList" class="space-y-2"></div>
-        </div>
+        <div id="workspacesList" class="panel-content"></div>
       </div>
       
-      <!-- Categories Panel - now in the middle to get the 65% width -->
-      <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
-          <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
-            <span class="material-icons mr-2">folder</span>
-            Categories
-          </h2>
-          <button id="addCategoryBtn" class="btn btn-icon flex items-center justify-center" title="Add Category">
+      <!-- Categories Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Categories</h2>
+          <button id="addCategoryBtn" class="btn-icon" title="Add Category">
             <span class="material-icons">add</span>
           </button>
         </div>
-        <div class="panel-content" style="overflow-y: auto;">
-          <div id="categoriesList" class="space-y-2"></div>
-        </div>
+        <div id="categoriesList" class="panel-content"></div>
       </div>
       
       <!-- Open Tabs Panel -->
-      <div class="panel bg-white bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 rounded-lg shadow-lg p-4">
-        <div class="panel-header flex justify-between items-center mb-3 border-b pb-2 dark:border-gray-600">
-          <h2 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center">
-            <span class="material-icons mr-2">tab</span>
-            Open Tabs
-          </h2>
-          <button id="refreshTabsBtn" class="btn btn-icon flex items-center justify-center" title="Refresh Tabs">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Open Tabs</h2>
+          <button id="refreshTabsBtn" class="btn-icon" title="Refresh Tabs">
             <span class="material-icons">refresh</span>
           </button>
         </div>
-        <div class="panel-content" style="overflow-y: auto;">
-          <div id="openTabsList" class="space-y-2"></div>
-        </div>
+        <div id="openTabsList" class="panel-content"></div>
       </div>
     </div>
   </div>
   
-  <!-- Modal Templates -->
-  <div id="modalContainer" class="modal-container hidden">
-    <div class="modal-content">
-      <div id="modalContent"></div>
+  <!-- Modal Container -->
+  <div id="modalContainer" class="modal-container hidden" aria-modal="true" role="dialog">
+    <div id="modalContent" class="modal-content">
+      <!-- Modal content will be inserted here dynamically -->
     </div>
   </div>
 
