@@ -42,7 +42,7 @@ class TabsManager {
     this.tabsList.innerHTML = '';
     
     if (tabs.length === 0) {
-      this.tabsList.innerHTML = '<div class="text-gray-500 dark:text-gray-400 text-center py-4">No open tabs</div>';
+      this.tabsList.innerHTML = '<div class="text-white dark:text-white text-center py-4">No open tabs</div>';
       return;
     }
     

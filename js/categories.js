@@ -22,7 +22,7 @@ class CategoriesManager {
     this.categoriesList.innerHTML = '';
     
     if (state.activeWorkspace === null) {
-      this.categoriesList.innerHTML = '<div class="text-gray-500 dark:text-gray-400 text-center py-4">Select a workspace</div>';
+      this.categoriesList.innerHTML = '<div class="text-white dark:text-white text-center py-4">Select a workspace</div>';
       return;
     }
     
@@ -54,7 +54,7 @@ class CategoriesManager {
         <div class="category-content">
           <div class="category-header">
             <span class="category-name">${category.name}</span>
-            <span class="category-count text-sm text-gray-500 dark:text-gray-400">
+            <span class="category-count text-sm text-white dark:text-white">
               ${category.links?.length || 0} links
             </span>
           </div>
