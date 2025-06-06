@@ -10,31 +10,37 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   font-weight: 500;
   font-size: 0.875rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, rgba(62, 198, 255, 0.8), rgba(45, 212, 191, 0.8));
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(62, 198, 255, 0.3);
-  text-shadow: 0 0 10px rgba(62, 198, 255, 0.5);
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+  cursor: pointer;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(62, 198, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
 }
 
 .dark .btn {
-  background: linear-gradient(135deg, rgba(45, 212, 191, 0.8), rgba(168, 85, 247, 0.8));
-  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
-  text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+  background: linear-gradient(135deg, #4f46e5, #3730a3);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
 }
 
 .dark .btn:hover {
-  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
+  background: linear-gradient(135deg, #4338ca, #312e81);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
 }
 
 .btn-icon {
@@ -43,64 +49,71 @@
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #64748b;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.btn-icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(62, 198, 255, 0.5), rgba(255, 82, 182, 0.5));
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.btn-icon .material-icons {
-  font-size: 1.25rem;
-  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .btn-icon:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(62, 198, 255, 0.2);
-  color: rgba(255, 255, 255, 1);
-}
-
-.btn-icon:hover::before {
-  opacity: 1;
-}
-
-.btn-icon:hover .material-icons {
-  transform: scale(1.1);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
 }
 
 .dark .btn-icon {
-  background: rgba(17, 25, 40, 0.7);
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-.dark .btn-icon::before {
-  background: linear-gradient(135deg, rgba(45, 212, 191, 0.5), rgba(168, 85, 247, 0.5));
+  background: rgba(71, 85, 105, 0.2);
+  border-color: rgba(71, 85, 105, 0.3);
+  color: #94a3b8;
 }
 
 .dark .btn-icon:hover {
-  box-shadow: 0 5px 15px rgba(45, 212, 191, 0.2);
+  background: rgba(79, 70, 229, 0.2);
+  border-color: rgba(79, 70, 229, 0.4);
+  color: #a78bfa;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+}.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  height: 2rem;
+  min-width: 2rem;
 }
 
-.btn-sm {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+.btn-secondary {
+  background: rgba(148, 163, 184, 0.1);
+  color: #64748b;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.2);
+}
+
+.dark .btn-secondary {
+  background: rgba(71, 85, 105, 0.2);
+  color: #94a3b8;
+  border-color: rgba(71, 85, 105, 0.4);
+}
+
+.dark .btn-secondary:hover {
+  background: rgba(71, 85, 105, 0.3);
+  color: #cbd5e1;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
 }
 
 .btn-icon.btn-sm {

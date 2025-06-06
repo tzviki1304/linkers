@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   padding: 1rem;
 }
@@ -21,42 +21,46 @@
   width: 100%;
   max-width: 500px;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   transform: translateY(0);
   opacity: 1;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #1f2937; /* Dark gray text for light mode */
+  color: #1e293b;
 }
 
 .dark .modal-content {
-  background: rgba(17, 25, 40, 0.95);
-  border-color: rgba(255, 255, 255, 0.05);
-  color: #f3f4f6; /* Light gray text for dark mode */
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(100, 116, 139, 0.4);
+  color: #f1f5f9;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .modal-header {
   padding: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .dark .modal-header {
-  background: rgba(17, 25, 40, 0.95);
-  border-color: rgba(255, 255, 255, 0.05);
+  border-bottom-color: rgba(100, 116, 139, 0.4);
+  background: rgba(51, 65, 85, 0.8);
 }
 
 .modal-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937; /* Dark gray for light mode */
-  text-shadow: 0 0 10px rgba(62, 198, 255, 0.3);
+  color: #1e293b;
+}
+
+.dark .modal-title {
+  color: #f1f5f9;
 }
 
 .dark .modal-title {

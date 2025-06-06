@@ -7,43 +7,41 @@
 @keyframes slideIn {
   from { 
     opacity: 0;
-    transform: translateY(20px);
-    filter: blur(10px);
+    transform: translateY(10px);
   }
   to { 
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
-@keyframes neonPulse {
+@keyframes gentlePulse {
   0% { 
-    box-shadow: 0 0 20px rgba(62, 198, 255, 0.2);
-    border-color: rgba(62, 198, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
   }
   50% { 
-    box-shadow: 0 0 30px rgba(62, 198, 255, 0.4);
-    border-color: rgba(62, 198, 255, 0.5);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.4);
   }
   100% { 
-    box-shadow: 0 0 20px rgba(62, 198, 255, 0.2);
-    border-color: rgba(62, 198, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
   }
 }
 
-@keyframes neonPulseDark {
+@keyframes gentlePulseDark {
   0% { 
-    box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
-    border-color: rgba(45, 212, 191, 0.3);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+    border-color: rgba(79, 70, 229, 0.3);
   }
   50% { 
-    box-shadow: 0 0 30px rgba(45, 212, 191, 0.4);
-    border-color: rgba(45, 212, 191, 0.5);
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+    border-color: rgba(79, 70, 229, 0.4);
   }
   100% { 
-    box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
-    border-color: rgba(45, 212, 191, 0.3);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+    border-color: rgba(79, 70, 229, 0.3);
   }
 }
 

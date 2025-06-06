@@ -28,7 +28,7 @@ class LinksManager {
     linksHeader.innerHTML = `
       <div class="flex items-center gap-2">
         <span class="font-medium text-gray-700 dark:text-gray-300">Links</span>
-        <span class="text-sm text-white dark:text-white">${category.links.length} items</span>
+        <span class="text-sm text-gray-500 dark:text-gray-400">${category.links.length} items</span>
       </div>
       <div class="actions-group">
         <button class="btn-icon btn-sm add-link-btn" title="Add Link">
