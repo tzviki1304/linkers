@@ -43,14 +43,13 @@ class WorkspacesManager {
       workspaceElement.className = `workspace-item ${state.activeWorkspace === index ? 'active' : ''}`;
       workspaceElement.dataset.index = index;
       workspaceElement.draggable = true;
-      
-      workspaceElement.innerHTML = `
+        workspaceElement.innerHTML = `
         <div class="workspace-content">
           <div class="workspace-header">
-            <div class="workspace-drag-handle">
-              <span class="material-icons" style="font-size: 16px;">drag_indicator</span>
-            </div>
-            <span class="workspace-name">${workspace.name}</span>
+            <span class="workspace-name">
+              <span class="material-icons">dashboard</span>
+              ${workspace.name}
+            </span>
           </div>
           <div class="actions-group">
             <button class="btn-icon btn-sm edit-workspace-btn" title="Edit Workspace">
@@ -64,10 +63,9 @@ class WorkspacesManager {
       `;
       
       this.workspacesList.appendChild(workspaceElement);
-      
-      // Add click listener to select workspace
+        // Add click listener to select workspace
       workspaceElement.addEventListener('click', (event) => {
-        if (!event.target.closest('button') && !event.target.closest('.workspace-drag-handle')) {
+        if (!event.target.closest('button')) {
           this.selectWorkspace(index);
         }
       });

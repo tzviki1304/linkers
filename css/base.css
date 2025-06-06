@@ -48,6 +48,7 @@ body::before {
   position: relative;
 }
 
+/* Header Bar */
 .header-bar {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
@@ -58,6 +59,8 @@ body::before {
   z-index: 10;
   width: 100%;
   transition: all 0.3s ease;
+  border-radius: 8px !important;
+  margin: 0.5rem 1.5rem;
 }
 
 .dark .header-bar {

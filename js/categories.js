@@ -44,10 +44,9 @@ class CategoriesManager {
       });
       return;
     }
-    
-    workspace.categories.forEach((category, index) => {
+      workspace.categories.forEach((category, index) => {
       const categoryElement = document.createElement('div');
-      categoryElement.className = `category-item ${state.activeCategory === index ? 'active' : ''}`;
+      categoryElement.className = `category-item ${state.activeCategory === index ? 'active expanded' : ''}`;
       categoryElement.dataset.index = index;
       
       categoryElement.innerHTML = `
@@ -55,7 +54,7 @@ class CategoriesManager {
           <div class="category-header">
             <span class="category-name">${category.name}</span>
             <span class="category-count text-sm text-white dark:text-white">
-              ${category.links?.length || 0} links
+              ${category.links?.length || 0}
             </span>
           </div>
           <div class="actions-group">
@@ -65,18 +64,13 @@ class CategoriesManager {
             <button class="btn-icon btn-sm delete-category-btn" title="Delete Category">
               <span class="material-icons">delete</span>
             </button>
-          </div>
-        </div>
+          </div>        </div>
       `;
       
       // Create a category container to hold both the category item and its links
       const categoryContainer = document.createElement('div');
       categoryContainer.className = 'category-container';
       categoryContainer.dataset.index = index;
-      
-      // Move the category element into the container
-      categoryContainer.appendChild(categoryElement);
-      this.categoriesList.appendChild(categoryContainer);
       
       // Add click listener to select category
       categoryElement.addEventListener('click', (event) => {
@@ -98,11 +92,15 @@ class CategoriesManager {
       // Add drag and drop functionality
       this.setupDragAndDrop(categoryElement, index);
       
-      // Create a placeholder for the links container
+      // Create a links container to hold the category links
       const linksContainer = document.createElement('div');
-      linksContainer.className = 'links-container-placeholder pl-4 mb-4';
+      linksContainer.className = 'links-container-placeholder';
       linksContainer.dataset.categoryIndex = index;
+      
+      // Move the category element into the container
+      categoryContainer.appendChild(categoryElement);
       categoryContainer.appendChild(linksContainer);
+      this.categoriesList.appendChild(categoryContainer);
       
       // Setup drag and drop for the links container
       this.setupDragAndDrop(linksContainer, index);

@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Open Extension in Chrome",
+			"type": "shell",
+			"command": "start chrome --load-extension=. --new-tab-url=newtab.html",
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}

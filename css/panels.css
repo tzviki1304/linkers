@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 60px);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -35,11 +35,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   background: rgba(255, 255, 255, 0.5);
-  padding: 1.5rem;
+  padding: 1rem;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -77,8 +77,8 @@
   overflow-y: auto !important;
   overflow-x: hidden;
   height: auto;
-  max-height: calc(100% - 80px);
-  padding: 1.5rem;
+  max-height: calc(100% - 60px);
+  padding: 1rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(62, 198, 255, 0.3) transparent;
 }

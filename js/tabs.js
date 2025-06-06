@@ -64,8 +64,7 @@ class TabsManager {
       
       // Create a shortened title (max 50 characters)
       const shortTitle = tab.title.length > 50 ? tab.title.substring(0, 50) + '...' : tab.title;
-      
-      tabElement.innerHTML = `
+        tabElement.innerHTML = `
         <div class="tab-content">
           <div class="tab-header">
             <div class="tab-image">
@@ -74,16 +73,15 @@ class TabsManager {
             </div>
             <div class="tab-info">
               <div class="tab-title">${shortTitle}</div>
-              <div class="tab-url">${domain}</div>
             </div>
-          </div>
-          <div class="tab-actions">
-            <button class="tab-btn go-to-tab-btn" title="Go to tab">
-              <span class="material-icons">open_in_new</span>
-            </button>
-            <button class="tab-btn save-tab-btn" title="Save to active category">
-              <span class="material-icons">bookmark_add</span>
-            </button>
+            <div class="actions-group">
+              <button class="btn-icon btn-sm go-to-tab-btn" title="Go to tab">
+                <span class="material-icons">open_in_new</span>
+              </button>
+              <button class="btn-icon btn-sm save-tab-btn" title="Save to active category">
+                <span class="material-icons">bookmark_add</span>
+              </button>
+            </div>
           </div>
         </div>
       `;
