@@ -55,6 +55,8 @@ class LinksManager {
       category.links.forEach((link, index) => {
         const linkElement = document.createElement('div');
         linkElement.className = 'link-card';
+        linkElement.dataset.index = index;
+        linkElement.draggable = true;
         
         let displayUrl;
         try {
@@ -94,6 +96,9 @@ class LinksManager {
           faviconImg.src = 'icons/default-favicon.png';
         });
         
+        // Add drag and drop functionality for links
+        this.addLinkDragEvents(linkElement);
+        
         // Add click listener to the card itself for opening the link
         linkElement.addEventListener('click', (event) => {
           // Don't trigger if clicking on action buttons
@@ -121,6 +126,62 @@ class LinksManager {
     // Add event listener for add link button
     linksPlaceholder.querySelector('.add-link-btn').addEventListener('click', () => {
       this.showAddLinkModal();
+    });
+  }
+
+  // Method to add drag events for link reordering
+  addLinkDragEvents(linkElement) {
+    linkElement.addEventListener('dragstart', (e) => {
+      linkElement.classList.add('dragging');
+      e.dataTransfer.setData('application/x-link-index', linkElement.dataset.index);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    linkElement.addEventListener('dragend', () => {
+      linkElement.classList.remove('dragging');
+    });
+
+    linkElement.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      
+      // Only allow link reordering if we're dragging a link
+      if (e.dataTransfer.types.includes('application/x-link-index')) {
+        linkElement.classList.add('drag-over');
+      }
+    });
+
+    linkElement.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      if (e.dataTransfer.types.includes('application/x-link-index')) {
+        linkElement.classList.add('drag-over');
+      }
+    });
+
+    linkElement.addEventListener('dragleave', () => {
+      linkElement.classList.remove('drag-over');
+    });
+
+    linkElement.addEventListener('drop', (e) => {
+      e.preventDefault();
+      linkElement.classList.remove('drag-over');
+      
+      // Handle link reordering
+      if (e.dataTransfer.types.includes('application/x-link-index')) {
+        const fromIndex = parseInt(e.dataTransfer.getData('application/x-link-index'));
+        const toIndex = parseInt(linkElement.dataset.index);
+        
+        if (fromIndex !== toIndex) {
+          this.reorderLinks(fromIndex, toIndex);
+        }
+      }
+    });
+  }
+
+  reorderLinks(fromIndex, toIndex) {
+    this.store.dispatch({
+      type: 'REORDER_LINKS',
+      payload: { fromIndex, toIndex }
     });
   }
 

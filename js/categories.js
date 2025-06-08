@@ -48,6 +48,7 @@ class CategoriesManager {
       const categoryElement = document.createElement('div');
       categoryElement.className = `category-item ${state.activeCategory === index ? 'active expanded' : ''}`;
       categoryElement.dataset.index = index;
+      categoryElement.draggable = true;
       
       categoryElement.innerHTML = `
         <div class="category-content">
@@ -89,7 +90,10 @@ class CategoriesManager {
         this.showDeleteCategoryConfirmation(index);
       });
       
-      // Add drag and drop functionality
+      // Add drag and drop functionality for categories
+      this.addCategoryDragEvents(categoryElement);
+      
+      // Add drag and drop functionality for tab dropping
       this.setupDragAndDrop(categoryElement, index);
       
       // Create a links container to hold the category links
@@ -104,6 +108,62 @@ class CategoriesManager {
       
       // Setup drag and drop for the links container
       this.setupDragAndDrop(linksContainer, index);
+    });
+  }
+
+  // Method to add drag events for category reordering
+  addCategoryDragEvents(categoryElement) {
+    categoryElement.addEventListener('dragstart', (e) => {
+      categoryElement.classList.add('dragging');
+      e.dataTransfer.setData('application/x-category-index', categoryElement.dataset.index);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    categoryElement.addEventListener('dragend', () => {
+      categoryElement.classList.remove('dragging');
+    });
+
+    categoryElement.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      
+      // Only allow category reordering if we're dragging a category
+      if (e.dataTransfer.types.includes('application/x-category-index')) {
+        categoryElement.classList.add('drag-over');
+      }
+    });
+
+    categoryElement.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      if (e.dataTransfer.types.includes('application/x-category-index')) {
+        categoryElement.classList.add('drag-over');
+      }
+    });
+
+    categoryElement.addEventListener('dragleave', () => {
+      categoryElement.classList.remove('drag-over');
+    });
+
+    categoryElement.addEventListener('drop', (e) => {
+      e.preventDefault();
+      categoryElement.classList.remove('drag-over');
+      
+      // Handle category reordering
+      if (e.dataTransfer.types.includes('application/x-category-index')) {
+        const fromIndex = parseInt(e.dataTransfer.getData('application/x-category-index'));
+        const toIndex = parseInt(categoryElement.dataset.index);
+        
+        if (fromIndex !== toIndex) {
+          this.reorderCategories(fromIndex, toIndex);
+        }
+      }
+    });
+  }
+
+  reorderCategories(fromIndex, toIndex) {
+    this.store.dispatch({
+      type: 'REORDER_CATEGORIES',
+      payload: { fromIndex, toIndex }
     });
   }
 

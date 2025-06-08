@@ -165,6 +165,43 @@ class Store {  constructor() {
         this.data.activeWorkspace = activeWorkspace;
         break;
       }
+
+      case 'REORDER_CATEGORIES': {
+        if (this.data.activeWorkspace !== null) {
+          const { fromIndex, toIndex } = action.payload;
+          const categories = this.data.workspaces[this.data.activeWorkspace].categories;
+          const newCategories = [...categories];
+          const [movedCategory] = newCategories.splice(fromIndex, 1);
+          newCategories.splice(toIndex, 0, movedCategory);
+          
+          // Adjust active category index if necessary
+          let activeCategory = this.data.activeCategory;
+          if (this.data.activeCategory === fromIndex) {
+            activeCategory = toIndex;
+          } else if (fromIndex < this.data.activeCategory && toIndex >= this.data.activeCategory) {
+            activeCategory--;
+          } else if (fromIndex > this.data.activeCategory && toIndex <= this.data.activeCategory) {
+            activeCategory++;
+          }
+          
+          this.data.workspaces[this.data.activeWorkspace].categories = newCategories;
+          this.data.activeCategory = activeCategory;
+        }
+        break;
+      }
+
+      case 'REORDER_LINKS': {
+        if (this.data.activeWorkspace !== null && this.data.activeCategory !== null) {
+          const { fromIndex, toIndex } = action.payload;
+          const links = this.data.workspaces[this.data.activeWorkspace].categories[this.data.activeCategory].links;
+          const newLinks = [...links];
+          const [movedLink] = newLinks.splice(fromIndex, 1);
+          newLinks.splice(toIndex, 0, movedLink);
+          
+          this.data.workspaces[this.data.activeWorkspace].categories[this.data.activeCategory].links = newLinks;
+        }
+        break;
+      }
     }
     
     await this.saveToStorage();
