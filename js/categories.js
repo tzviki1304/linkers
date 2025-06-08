@@ -217,12 +217,22 @@ class CategoriesManager {
       }
     });
   }
-
   selectCategory(index) {
-    this.store.dispatch({
-      type: 'SET_ACTIVE_CATEGORY',
-      payload: { index }
-    });
+    const state = this.store.getState();
+    
+    // If clicking on the already active category, close it
+    if (state.activeCategory === index) {
+      this.store.dispatch({
+        type: 'SET_ACTIVE_CATEGORY',
+        payload: { index: null }
+      });
+    } else {
+      // Otherwise, set the new active category
+      this.store.dispatch({
+        type: 'SET_ACTIVE_CATEGORY',
+        payload: { index }
+      });
+    }
   }
 
   showAddCategoryModal() {
