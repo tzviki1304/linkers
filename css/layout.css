@@ -84,8 +84,3 @@
 .dark .main-content::-webkit-scrollbar-thumb {
   background-color: rgba(45, 212, 191, 0.3);
 }
-
-/* Space between panels */
-.panel + .panel {
-  margin-top: 1.5rem;
-}
