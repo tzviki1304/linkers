@@ -61,15 +61,13 @@ class TabsManager {
       } catch (e) {
         domain = tab.url;
       }
-      
-      // Create a shortened title (max 50 characters)
+        // Create a shortened title (max 50 characters)
       const shortTitle = tab.title.length > 50 ? tab.title.substring(0, 50) + '...' : tab.title;
         tabElement.innerHTML = `
         <div class="tab-content">
           <div class="tab-header">
             <div class="tab-image">
-              <img src="${tab.favIconUrl || 'icons/default-favicon.png'}" alt="favicon" 
-                  onerror="this.src='icons/default-favicon.png'">
+              <img src="${tab.favIconUrl || 'icons/default-favicon.png'}" alt="favicon">
             </div>
             <div class="tab-info">
               <div class="tab-title">${shortTitle}</div>
@@ -84,9 +82,14 @@ class TabsManager {
             </div>
           </div>
         </div>
-      `;
-      
+      `;      
       this.tabsList.appendChild(tabElement);
+      
+      // Add favicon error handling
+      const faviconImg = tabElement.querySelector('.tab-image img');
+      faviconImg.addEventListener('error', () => {
+        faviconImg.src = 'icons/default-favicon.png';
+      });
       
       // Add drag event listeners
       tabElement.addEventListener('dragstart', (event) => {

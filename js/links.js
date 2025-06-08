@@ -61,13 +61,11 @@ class LinksManager {
           const url = new URL(link.url);
           displayUrl = url.hostname;
         } catch (e) {
-          displayUrl = link.url;
-        }
+          displayUrl = link.url;        }
           linkElement.innerHTML = `
           <div class="link-card-content">
             <div class="link-thumbnail">
-              <img src="${link.image || 'icons/default-favicon.png'}" alt="favicon" 
-                   onerror="this.src='icons/default-favicon.png'">
+              <img src="${link.image || 'icons/default-favicon.png'}" alt="favicon">
             </div>
             <div class="link-info">
               <h3 class="link-card-title">${link.title}</h3>
@@ -87,9 +85,14 @@ class LinksManager {
               </button>
             </div>
           </div>
-        `;
-        
+        `;        
         linksGrid.appendChild(linkElement);
+        
+        // Add favicon error handling
+        const faviconImg = linkElement.querySelector('.link-thumbnail img');
+        faviconImg.addEventListener('error', () => {
+          faviconImg.src = 'icons/default-favicon.png';
+        });
         
         // Add click listener to the card itself for opening the link
         linkElement.addEventListener('click', (event) => {
