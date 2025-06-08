@@ -9,11 +9,22 @@ class App {
     this.tabsManager = new TabsManager(this.store, this.ui);
     
     this.init();
-  }
-
-  async init() {
+  }  async init() {
     // Initialize store
     await this.store.init();
+    
+    // Ensure theme is set correctly from the start
+    const currentTheme = this.store.getState().theme;
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    if (currentTheme === 'dark') {
+      htmlElement.classList.add('dark');
+      bodyElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+      bodyElement.classList.remove('dark');
+    }
     
     // Subscribe to state changes
     this.store.subscribe(this.handleStateChange.bind(this));

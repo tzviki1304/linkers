@@ -61,13 +61,17 @@ class UI {
       }
     });
   }
-
   updateTheme(theme) {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      htmlElement.classList.add('dark');
+      bodyElement.classList.add('dark');
       this.themeToggle.querySelector('.material-icons').textContent = 'light_mode';
     } else {
-      document.documentElement.classList.remove('dark');
+      htmlElement.classList.remove('dark');
+      bodyElement.classList.remove('dark');
       this.themeToggle.querySelector('.material-icons').textContent = 'dark_mode';
     }
   }

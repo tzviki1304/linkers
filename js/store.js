@@ -1,10 +1,9 @@
-class Store {
-  constructor() {
+class Store {  constructor() {
     this.data = {
       workspaces: [],
       activeWorkspace: null,
       activeCategory: null,
-      theme: 'light'
+      theme: 'dark'
     };
     this.listeners = [];
   }

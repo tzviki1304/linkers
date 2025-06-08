@@ -2,13 +2,15 @@
 .main-content {
   display: grid;
   grid-template-columns: 300px minmax(400px, 1fr) 350px;
+  grid-template-rows: 1fr;
   gap: 1.5rem;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 90px);
   padding: 0.5rem 1.5rem 1.5rem 1.5rem;
   overflow: hidden;
   max-width: 1600px;
   margin: 0 auto;
   width: 80%;
+  align-items: stretch;
 }
 
 /* Responsive layouts */

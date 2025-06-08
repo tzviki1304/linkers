@@ -63,8 +63,7 @@ class LinksManager {
         } catch (e) {
           displayUrl = link.url;
         }
-        
-        linkElement.innerHTML = `
+          linkElement.innerHTML = `
           <div class="link-card-content">
             <div class="link-thumbnail">
               <img src="${link.image || 'icons/default-favicon.png'}" alt="favicon" 
@@ -92,14 +91,24 @@ class LinksManager {
         
         linksGrid.appendChild(linkElement);
         
+        // Add click listener to the card itself for opening the link
+        linkElement.addEventListener('click', (event) => {
+          // Don't trigger if clicking on action buttons
+          if (!event.target.closest('.link-card-actions')) {
+            window.open(link.url, '_blank');
+          }
+        });
+        
         // Add edit button listener
         linkElement.querySelector('.edit-link-btn').addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent card click
           const linkIndex = parseInt(event.currentTarget.dataset.index);
           this.showEditLinkModal(link, linkIndex);
         });
         
         // Add delete button listener
         linkElement.querySelector('.delete-link-btn').addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent card click
           const linkIndex = parseInt(event.currentTarget.dataset.index);
           this.showDeleteLinkConfirmation(linkIndex);
         });
