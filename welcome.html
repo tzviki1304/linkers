@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Link Saver</title>
+  <script src="js/boot.js"></script>
+  <link href="css/app.css" rel="stylesheet">
+</head>
+<body class="welcome-page">
+  <div class="wl-lang"><span class="wl-lang-ico" data-icon="globe"></span><select id="wlLang" class="input sm" data-i18n-aria-label="settings.language"></select></div>
+  <main class="wl">
+    <header class="wl-hero">
+      <img src="icons/icon128.png" alt="" class="wl-logo">
+      <h1 id="wlTitle" data-i18n="welcome.title"></h1>
+      <p class="wl-lead" data-i18n="welcome.lead"></p>
+      <div class="wl-whatsnew" id="wlWhatsNew" hidden>
+        <strong data-i18n="welcome.whatsNew"></strong>
+        <ul>
+          <li data-i18n-rich="welcome.new1"></li>
+          <li data-i18n-rich="welcome.new2"></li>
+          <li data-i18n-rich="welcome.new3"></li>
+          <li data-i18n-rich="welcome.new4"></li>
+          <li data-i18n-rich="welcome.new5"></li>
+          <li data-i18n-rich="welcome.new6"></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="wl-step">
+      <div class="wl-num">1</div>
+      <div class="wl-step-body">
+        <h2 data-i18n="welcome.step1.title"></h2>
+        <p data-i18n-rich="welcome.step1.text"></p>
+        <div class="choices" role="radiogroup" id="wlModes"></div>
+        <div class="callout">
+          <strong data-i18n="welcome.callout.title"></strong>
+          <span data-i18n-rich="welcome.callout.text"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="wl-step">
+      <div class="wl-num">2</div>
+      <div class="wl-step-body">
+        <h2 data-i18n="welcome.step2.title"></h2>
+        <p data-i18n="welcome.step2.text"></p>
+        <div class="choices" id="wlBackup"></div>
+        <div class="wl-backup-status" id="wlBackupStatus"></div>
+      </div>
+    </section>
+
+    <section class="wl-step">
+      <div class="wl-num">3</div>
+      <div class="wl-step-body">
+        <h2 data-i18n="welcome.step3.title"></h2>
+        <ul class="wl-tips">
+          <li><span class="wl-tip-ico" data-icon="tab"></span><div data-i18n-rich="welcome.tip1"></div></li>
+          <li><span class="wl-tip-ico" data-icon="bookmarkPlus"></span><div data-i18n-rich="welcome.tip2"></div></li>
+          <li><span class="wl-tip-ico" data-icon="keyboard"></span><div data-i18n-rich="welcome.tip3"></div></li>
+          <li><span class="wl-tip-ico" data-icon="pin"></span><div data-i18n-rich="welcome.tip4"></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="wl-foot">
+      <button class="btn btn-primary btn-lg" id="wlDone" data-i18n="welcome.open"></button>
+    </footer>
+  </main>
+
+  <script src="js/i18n/i18n.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/i18n/he.js"></script>
+  <script src="js/i18n/fr.js"></script>
+  <script src="js/i18n/es.js"></script>
+  <script src="js/i18n/zh.js"></script>
+  <script src="js/shared/idb.js"></script>
+  <script src="js/shared/data.js"></script>
+  <script src="js/shared/backup.js"></script>
+  <script src="js/ui/icons.js"></script>
+  <script src="js/ui/dom.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/actions.js"></script>
+  <script src="js/backup-ui.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "appName": {
+    "message": "Link Saver"
+  },
+  "appDesc": {
+    "message": "Remplace la page Nouvel onglet par un espace clair pour vos liens enregistrés, organisés en espaces de travail et catégories, avec sauvegarde quotidienne automatique."
+  },
+  "cmdOpen": {
+    "message": "Ouvrir Link Saver"
+  },
+  "cmdQuickSave": {
+    "message": "Enregistrer l’onglet actuel dans la Boîte de réception"
+  },
+  "actionTitle": {
+    "message": "Ouvrir Link Saver"
+  }
+}

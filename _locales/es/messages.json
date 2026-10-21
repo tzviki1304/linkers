@@ -1,0 +1,17 @@
+{
+  "appName": {
+    "message": "Link Saver"
+  },
+  "appDesc": {
+    "message": "Reemplaza la página de nueva pestaña por un espacio limpio para tus enlaces guardados, organizados en espacios de trabajo y categorías, con copia de seguridad diaria automática."
+  },
+  "cmdOpen": {
+    "message": "Abrir Link Saver"
+  },
+  "cmdQuickSave": {
+    "message": "Guardar la pestaña actual en la Bandeja de entrada"
+  },
+  "actionTitle": {
+    "message": "Abrir Link Saver"
+  }
+}

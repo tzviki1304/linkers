@@ -1,0 +1,17 @@
+{
+  "appName": {
+    "message": "Link Saver"
+  },
+  "appDesc": {
+    "message": "מחליף את דף הכרטיסייה החדשה בבית נקי לקישורים השמורים שלכם, מסודרים בסביבות עבודה ובקטגוריות, עם גיבוי יומי אוטומטי."
+  },
+  "cmdOpen": {
+    "message": "פתיחת Link Saver"
+  },
+  "cmdQuickSave": {
+    "message": "שמירת הכרטיסייה הנוכחית בדואר הנכנס"
+  },
+  "actionTitle": {
+    "message": "פתיחת Link Saver"
+  }
+}
