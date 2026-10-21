@@ -1,0 +1,17 @@
+{
+  "appName": {
+    "message": "Link Saver"
+  },
+  "appDesc": {
+    "message": "Replaces your New Tab page with a clean home for saved links, organized in workspaces and categories, with automatic daily backups."
+  },
+  "cmdOpen": {
+    "message": "Open Link Saver"
+  },
+  "cmdQuickSave": {
+    "message": "Save the current tab to Inbox"
+  },
+  "actionTitle": {
+    "message": "Open Link Saver"
+  }
+}
